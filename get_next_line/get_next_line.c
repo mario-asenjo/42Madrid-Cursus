@@ -1,28 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/30 18:53:22 by masenjo           #+#    #+#             */
+/*   Updated: 2025/09/30 19:16:47 by masenjo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putnbr(int nb)
-{
-	long nbl;
-
-	nbl = (long) nb;
-	if (nbl / 10 > 0)
-		ft_putnbr(nbl / 10);
-	ft_putchar(nbl % 10 + '0');
-}
 
 char	*get_next_line(int fd)
 {
-	ft_putnbr(BUFFER_SIZE);	
+	static char	*buff;
+	ssize_t		read_bytes;
+
+	if (ft_strchr(buff, '\n'))
+		return ("Estoy en salto de linea en buff");
+	read_bytes = read(fd, buff, BUFFER_SIZE);
+	if (read_bytes < 0)
+		return ("Error leyendo el fichero con read.");
+	if (!read_bytes)
+		return ("Como es 0 devuelvo el resto.");
+	if (ft_strlen(buff) < 1)
+		return ("Longitud de buff menor que 1.");
+	return (NULL);
 }
 
 int	main(void)
 {
-	int	fd1;
+	int		fd1;
 	char	*line;
 
 	fd1 = open("file1.txt", O_RDONLY);

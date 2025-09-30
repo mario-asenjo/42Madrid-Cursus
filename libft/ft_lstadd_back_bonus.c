@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:45:22 by masenjo           #+#    #+#             */
-/*   Updated: 2025/09/29 11:53:51 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/09/29 15:31:50 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_isupper(int c)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	if ((unsigned int) c >= 65 && (unsigned int) c <= 90)
-		return (1);
-	return (0);
-}
+	t_list	*aux;
 
-static int	ft_islower(int c)
-{
-	if ((unsigned int) c >= 97 && (unsigned int) c <= 122)
-		return (1);
-	return (0);
-}
-
-int	ft_isalpha(int c)
-{
-	if (ft_islower(c) || ft_isupper(c))
-		return (1);
-	return (0);
+	if (!new)
+		return ;
+	if (!(*lst))
+		*lst = new;
+	else
+	{
+		aux = *lst;
+		while (aux->next != NULL)
+			aux = aux->next;
+		aux->next = new;
+	}
 }
