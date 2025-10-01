@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 18:53:22 by masenjo           #+#    #+#             */
-/*   Updated: 2025/10/01 20:46:11 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/10/01 21:37:02 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,15 @@ static char	*ft_strchr(char *s, char c)
 	return (0);
 }
 
-static char	*aux_get_line(char *buff, int fd, ssize_t read_bytes)
+static char	*aux_get_line(char *buff, int fd)
 {
 	char	*temp_buff;
+	ssize_t	read_bytes;
+	char	*joined;
 
 	while (!ft_strchr(buff, '\n'))
 	{
-		temp_buff = (char *) malloc(sizeof(char) * BUFFER_SIZE + 1);
+		temp_buff = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
 		read_bytes = read(fd, temp_buff, BUFFER_SIZE);
 		if (read_bytes < 0)
 		{
@@ -61,8 +63,10 @@ static char	*aux_get_line(char *buff, int fd, ssize_t read_bytes)
 			break ;
 		}
 		temp_buff[read_bytes] = '\0';
-		buff = ft_strjoin(buff, temp_buff);
+		joined = ft_strjoin(buff, temp_buff);
 		free(temp_buff);
+		free(buff);
+		buff = joined;
 	}
 	return (buff);
 }
@@ -90,21 +94,29 @@ static char	*ft_substr(char const *s, int start, int len)
 char	*get_next_line(int fd)
 {
 	static char	*buff;
-	ssize_t		read_bytes;
 	char		*line;
 	char		*rest;
+	int			position;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	read_bytes = 0;
-	buff = aux_get_line(buff, fd, read_bytes);
 	if (!buff)
-		return (NULL);
-	line = ft_substr(buff, 0, ft_index_of(buff, '\n'));
-	rest = ft_substr(buff, ft_index_of(buff, '\n') + 1, ft_strlen(buff));
-	free(buff);
-	buff = rest;
-	return (line);
+		buff = ft_strdup("");
+	buff = aux_get_line(buff, fd);
+	if (!buff || !*buff)
+		return (free(buff), buff = NULL, NULL);
+	position = ft_index_of(buff, '\n');
+	if (position > 0)
+	{
+		line = ft_substr(buff, 0, position + 1);
+		rest = ft_substr(buff, position + 1, ft_strlen(buff) - position - 1);
+	}
+	else
+	{
+		line = ft_strdup(buff);
+		rest = ft_strdup("");
+	}
+	return (free(buff), buff = rest, line);
 }
 
 /*int	main(void)
