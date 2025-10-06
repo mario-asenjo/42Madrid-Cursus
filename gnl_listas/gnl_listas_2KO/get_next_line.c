@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 20:01:13 by masenjo           #+#    #+#             */
-/*   Updated: 2025/10/04 23:28:11 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/10/05 20:06:06 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*retrieve_line(t_list *list)
 	while (list)
 	{
 		if (!list->content)
-			break;
+			break ;
 		i = 0;
 		while (list->content[i])
 		{
@@ -84,9 +84,11 @@ void	reset_list_for_next_call(t_list **list)
 	if (!last_node || !last_node->content)
 		return (ft_lststr_clear(list));
 	i = 0;
-	while (last_node->content && last_node->content[i] && last_node->content[i] != '\n')
+	while (last_node->content && last_node->content[i]
+		&& last_node->content[i] != '\n')
 		i++;
-	if (!last_node->content || !last_node->content[i] || !last_node->content[i + 1])
+	if (!last_node->content || !last_node->content[i]
+		|| !last_node->content[i + 1])
 		return (ft_lststr_clear(list));
 	buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buff)
@@ -115,18 +117,14 @@ char	*get_next_line(int fd)
 	return (ret_line);
 }
 
-/*int	main(void)
+int	main(void)
 {
-	int		fd1;
 	char	*line;
-
-	fd1 = open("file1.txt", O_RDONLY);
-	if (fd1 == -1)
-		return (printf("Error opening file."), 1);
-	while ((line = get_next_line(fd1)) != NULL)
+	int fd = open("test.txt", O_RDONLY);
+	while ((line = get_next_line(fd)) != NULL)
 	{
-		printf("In FD1: %s", line);
+		printf("IN FD: %s", line);
 		free(line);
 	}
-	close(fd1);
-}*/
+	close(fd);
+}
