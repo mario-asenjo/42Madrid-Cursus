@@ -17,4 +17,9 @@
 # include <stdio.h>
 # include <unistd.h>
 
+void    ft_putchar(char c);
+int     ft_print_count_char(char c);
+int     ft_print_count_str(char *str);
+int     ft_print_count_nbr(int nbr, char *base);
+
 #endif
