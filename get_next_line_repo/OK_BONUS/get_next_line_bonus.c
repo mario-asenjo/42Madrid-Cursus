@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 20:26:01 by masenjo           #+#    #+#             */
-/*   Updated: 2025/10/09 21:23:11 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/10/09 21:59:41 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	ret_line = retrieve_line(stash[fd]);
 	if (!ret_line)
-		return (reset_list_for_next_call(&stash[fd]), NULL);
+		return (ft_lststr_clear(&stash[fd]), NULL);
 	reset_list_for_next_call(&stash[fd]);
 	return (ret_line);
 }
