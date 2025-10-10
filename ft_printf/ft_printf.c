@@ -6,11 +6,35 @@
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 20:43:44 by masenjo           #+#    #+#             */
-/*   Updated: 2025/10/06 21:39:52 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/10/10 21:50:07 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	parse(va_list args, const char *str, size_t i)
+{
+	size_t	count;
+
+	count = 0;
+	if (str[i] == 'c')
+		count += ft_print_count_char(va_arg(args, int));
+	else if (str[i] == '%')
+		count += ft_print_count_char('%');
+	else if (str[i] == 's')
+		count += ft_print_count_str(va_arg(args, char *));
+	else if (str[i] == 'd' || str[i] == 'i')
+		count += ft_putnbr_s(va_arg(args, int), "0123456789");
+	else if (str[i] == 'u')
+		count += ft_putnbr_u(va_arg(args, unsigned int), "0123456789");
+	else if (str[i] == 'x')
+		count += ft_putnbr_u(va_arg(args, unsigned int), "0123456789abcdef");
+	else if (str[i] == 'X')
+		count += ft_putnbr_u(va_arg(args, unsigned int), "0123456789ABCDEF");
+	else if (str[i] == 'p')
+		count += ft_putptr(va_arg(args, void *));
+	return (count);
+}
 
 int	print_and_return_count(va_list args, char const *str)
 {
@@ -21,15 +45,10 @@ int	print_and_return_count(va_list args, char const *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '%')
+		if (str[i] == '%' && str[i + 1])
 		{
 			i++;
-			if (str[i] == 'c')
-				count += ft_print_count_char(va_arg(args, int));
-			else if (str[i] == 's')
-				count += ft_print_count_str(va_arg(args, char *));
-			else if (str[i] == 'd')
-				count += ft_print_count_nbr(va_arg(args, int), "0123456789");
+			count += parse(args, str, i);
 		}
 		else
 			count += ft_print_count_char(str[i]);
@@ -55,10 +74,14 @@ int	main(void)
 {
 	int	count_mine = 0;
 	int count_printf = 0;
-	if (!ft_printf("%s %s!, tienes %d años?", "Hola", "Juan", 18))
-		return (write(2, "Error.\n", 7), 1);
-	count_printf = printf("Hola %s %d!", "Mario", -22);
-	count_mine = ft_printf("Hola %s %d!", "Mario", -22);
+	int a = -42;
+	unsigned int ua = (unsigned int) a;
+	void *p = NULL;
+
+	count_printf = printf("LIBC: |%d| %i |%u| %x %X |%p| %s |%c|\n",
+			a, a, ua, 255u, 255u, p, "hola", 'Z');
+	count_mine = ft_printf("MINE: |%d| %i |%u| %x %X |%p| %s |%c|\n",
+			a, a, ua, 255u, 255u, p, "hola", 'Z');
 	printf("count_printf: %d", count_printf);
 	printf("count_mine: %d", count_mine);
 	return (0);

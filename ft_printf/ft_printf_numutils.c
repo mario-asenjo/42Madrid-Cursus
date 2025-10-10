@@ -1,25 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_numutils.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/10 21:19:43 by masenjo           #+#    #+#             */
+/*   Updated: 2025/10/10 21:56:22 by masenjo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-void    ft_putchar(char c)
-{
-    write(1, &c, 1);
-}
-
-static int		check_base(char *base)
+static int	check_base(const char *base)
 {
 	int	i;
 	int	z;
 
 	i = 0;
 	z = 0;
-	if (base[0] == '\0' || base[1] == '\0')
+	if (!base || !base[0] || !base[1])
 		return (0);
 	while (base[i])
 	{
 		z = i + 1;
 		if (base[i] == '+' || base[i] == '-')
 			return (0);
-		if (base[i] < 32 || base[i] > 126)
+		if ((unsigned char) base[i] < 32 || (unsigned char) base[i] > 126)
 			return (0);
 		while (base[z])
 		{
@@ -32,30 +39,58 @@ static int		check_base(char *base)
 	return (1);
 }
 
-int	ft_print_count_nbr(int nbr, char *base)
+int	ft_putnbr_u(unsigned long long nbr, const char *base)
 {
-	int	size_base;
-	int	nbr_final[100];
-	int	i;
+	unsigned long long	base_size;
+	char				nbr_final[100];
+	int					i;
+	int					count;
 
+	if (!check_base(base))
+		return (0);
+	base_size = 0;
+	while (base[base_size])
+		base_size++;
 	i = 0;
-	size_base = 0;
-	if (check_base(base))
+	if (nbr == 0)
+		return (ft_print_count_char(base[0]));
+	while (nbr)
 	{
-		if (nbr < 0)
-		{
-			nbr = -nbr;
-			ft_putchar('-');
-		}
-		while (base[size_base])
-			size_base++;
-		while (nbr)
-		{
-			nbr_final[i++] = nbr % size_base;
-			nbr = nbr / size_base;
-		}
-		while (--i >= 0)
-			ft_putchar(base[nbr_final[i]]);
+		nbr_final[i++] = base[nbr % base_size];
+		nbr = nbr / base_size;
 	}
-    return (i);
+	count = 0;
+	while (--i >= 0)
+		count += ft_print_count_char(nbr_final[i]);
+	return (count);
+}
+
+int	ft_putnbr_s(long long n, const char *base)
+{
+	int					count;
+	unsigned long long	nbr;
+
+	count = 0;
+	if (n < 0)
+	{
+		count += ft_print_count_char('-');
+		nbr = (unsigned long long)(-(n + 1)) + 1ULL;
+	}
+	else
+		nbr = (unsigned long long)(-(n + 1)) + 1ULL;
+
+	count += ft_putnbr_u(n, base);
+	return (count);
+}
+
+int	ft_putptr(void *p)
+{
+	int	count;
+
+	count = 0;
+	if (!p)
+		return (ft_print_count_str("nil"));
+	count += ft_print_count_str("0x");
+	count += ft_putnbr_u((unsigned long long)p, "0123456789abcdef");
+	return (count);
 }
