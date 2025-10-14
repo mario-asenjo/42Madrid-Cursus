@@ -17,9 +17,6 @@
 # include <stdio.h>
 # include <unistd.h>
 
-typedef long long			t_ll;
-typedef unsigned long long	t_ull;
-
 /* Main func */
 int		ft_printf(const char *str, ...);
 
@@ -27,8 +24,8 @@ int		ft_printf(const char *str, ...);
 int		ft_print_count_char(char c);
 int		ft_print_count_str(char *str);
 /* Numbers */
-int		ft_putnbr_s(long long nbr, const char *base);
-int		ft_putnbr_u(unsigned long long nbr, const char *base);
+int		ft_putnbr_s(int nbr, const char *base);
+int		ft_putnbr_u(unsigned long nbr, const char *base);
 /* Pointers */
 int		ft_putptr(void *p);
 #endif

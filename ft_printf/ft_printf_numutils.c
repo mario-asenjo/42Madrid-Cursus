@@ -39,9 +39,9 @@ static int	check_base(const char *base)
 	return (1);
 }
 
-int	ft_putnbr_u(unsigned long long nbr, const char *base)
+int	ft_putnbr_u(unsigned long nbr, const char *base)
 {
-	unsigned long long	base_size;
+	unsigned int		base_size;
 	char				nbr_final[100];
 	int					i;
 	int					count;
@@ -65,21 +65,20 @@ int	ft_putnbr_u(unsigned long long nbr, const char *base)
 	return (count);
 }
 
-int	ft_putnbr_s(long long n, const char *base)
+int	ft_putnbr_s(int n, const char *base)
 {
 	int					count;
-	unsigned long long	nbr;
+	unsigned int		nbr;
 
 	count = 0;
 	if (n < 0)
 	{
 		count += ft_print_count_char('-');
-		nbr = (unsigned long long)(-(n + 1)) + 1ULL;
+		nbr = (unsigned long)-n;
 	}
 	else
-		nbr = (unsigned long long)(-(n + 1)) + 1ULL;
-
-	count += ft_putnbr_u(n, base);
+		nbr = (unsigned long)n;
+	count += ft_putnbr_u(nbr, base);
 	return (count);
 }
 
@@ -89,8 +88,8 @@ int	ft_putptr(void *p)
 
 	count = 0;
 	if (!p)
-		return (ft_print_count_str("nil"));
+		return (ft_print_count_str("(nil)"));
 	count += ft_print_count_str("0x");
-	count += ft_putnbr_u((unsigned long long)p, "0123456789abcdef");
+	count += ft_putnbr_u((unsigned long)p, "0123456789abcdef");
 	return (count);
 }

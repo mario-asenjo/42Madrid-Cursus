@@ -79,9 +79,9 @@ int	main(void)
 	void *p = NULL;
 
 	count_printf = printf("LIBC: |%d| %i |%u| %x %X |%p| %s |%c|\n",
-			a, a, ua, 255u, 255u, p, "hola", 'Z');
+			a, a, ua, 255U, 255U, p, "hola!", 'c');
 	count_mine = ft_printf("MINE: |%d| %i |%u| %x %X |%p| %s |%c|\n",
-			a, a, ua, 255u, 255u, p, "hola", 'Z');
+			a, a, ua, 255U, 255U, p, "hola!", 'c');
 	printf("count_printf: %d", count_printf);
 	printf("count_mine: %d", count_mine);
 	return (0);
