@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 20:43:44 by masenjo           #+#    #+#             */
-/*   Updated: 2025/10/10 21:50:07 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/10/14 20:04:52 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,14 @@ int	ft_printf(char const *str, ...)
 	return (count);
 }
 
+/* 
 int	main(void)
 {
 	int	count_mine = 0;
 	int count_printf = 0;
 	int a = -42;
 	unsigned int ua = (unsigned int) a;
-	void *p = NULL;
+	void *p = (void *) &a;
 
 	count_printf = printf("LIBC: |%d| %i |%u| %x %X |%p| %s |%c|\n",
 			a, a, ua, 255U, 255U, p, "hola!", 'c');
@@ -86,3 +87,4 @@ int	main(void)
 	printf("count_mine: %d", count_mine);
 	return (0);
 }
+ */
