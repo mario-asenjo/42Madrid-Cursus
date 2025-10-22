@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_numutils.c                               :+:      :+:    :+:   */
+/*   ft_printf_numutils_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 21:19:43 by masenjo           #+#    #+#             */
-/*   Updated: 2025/10/22 10:31:15 by mario            ###   ########.fr       */
+/*   Updated: 2025/10/21 13:09:00 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 static int	check_base(const char *base)
 {
