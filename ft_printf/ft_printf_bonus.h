@@ -6,7 +6,7 @@
 /*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 20:45:15 by masenjo           #+#    #+#             */
-/*   Updated: 2025/10/22 13:48:50 by mario            ###   ########.fr       */
+/*   Updated: 2025/10/22 19:02:05 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,19 @@ void    handle_flags(t_printf_token *token, const char *str, size_t *i);
 void	handle_width(t_printf_token *token, va_list args, char const *str, size_t *i);
 void	handle_precision(t_printf_token *token, va_list args, char const *str, size_t *i);
 
+/* Output Formatters */
+size_t  print_token_char(t_printf_token * token, int c);
+size_t  print_token_str(t_printf_token *token, char *str);
+
 /* Main func */
 int		ft_printf(const char *str, ...);
 
 /* Chars */
 int		ft_print_count_char(char c);
-int		ft_print_count_str(char *str);
+int		ft_print_count_str(char *str, size_t len);
 int		ft_iscinstr(const char *str, char c);
 int		ft_isdigit(char c);
+size_t	ft_strlen(char *str);
 
 /* Numbers */
 int		ft_putnbr_s(int nbr, const char *base);

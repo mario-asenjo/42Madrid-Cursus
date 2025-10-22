@@ -6,7 +6,7 @@
 /*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:44:57 by mario             #+#    #+#             */
-/*   Updated: 2025/10/22 16:51:27 by mario            ###   ########.fr       */
+/*   Updated: 2025/10/22 18:30:19 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,21 @@ size_t	print_token(t_printf_token *token, va_list args)
 
 	count = 0;
 	if (token->specifier == 'c')
-		count += print_token_char(va_arg(args, int));
+		count += print_token_char(token, va_arg(args, int));
 	if (token->specifier == '%')
-		count += print_token_char('%');
+		count += print_token_char(token, '%');
 	if (token->specifier == 's')
-		count += print_token_str(va_arg(args, char *));
+		count += print_token_str(token, va_arg(args, char *));
 	if (token->specifier == 'i' || token->specifier == 'd')
-		count += print_token_sint(va_arg(args, int), "0123456789");
+		count += print_token_sint(token, va_arg(args, int), "0123456789");
 	if (token->specifier == 'u')
-		count += print_token_uint(va_arg(args, unsigned int), "0123456789");
+		count += print_token_uint(token, va_arg(args, unsigned int), "0123456789");
 	if (token->specifier == 'x')
-		count += print_token_uint(va_arg(args, unsigned int), "0123456789abcdef");
+		count += print_token_uint(token, va_arg(args, unsigned int), "0123456789abcdef");
 	if (token->specifier == 'X')
-		count += print_token_uint(va_arg(args, unsigned int), "0123456789ABCDEF");
+		count += print_token_uint(token, va_arg(args, unsigned int), "0123456789ABCDEF");
 	if (token->specifier == 'p')
-		count += print_token_ptr(va_arg(args, void *));
+		count += print_token_ptr(token, va_arg(args, void *));
 	return (count);
 }
 
