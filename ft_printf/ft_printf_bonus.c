@@ -6,7 +6,7 @@
 /*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 20:43:44 by masenjo           #+#    #+#             */
-/*   Updated: 2025/10/22 10:40:15 by mario            ###   ########.fr       */
+/*   Updated: 2025/10/22 13:38:34 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	ft_printf(char const *str, ...)
 	return (count);
 }
 
+/*
 int	main(void)
 {
 	int	count_mine = 0;
@@ -87,3 +88,4 @@ int	main(void)
 	ft_printf("Test: |%-+ 0#d|\n", 42);
 	return (0);
 }
+*/

@@ -6,7 +6,7 @@
 /*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:44:57 by mario             #+#    #+#             */
-/*   Updated: 2025/10/22 13:07:55 by mario            ###   ########.fr       */
+/*   Updated: 2025/10/22 16:51:27 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,52 +27,36 @@ static int init_token(t_printf_token *token)
 	return (OK);
 }
 
-static void    handle_flags(t_printf_token *token, const char *str, size_t *i)
+size_t	print_token(t_printf_token *token, va_list args)
 {
-	while (ft_strchr("-+ 0#", str[*i]))
-	{
-		if (str[*i] == '0' && !token->zero_flag)
-			token->zero_flag = 1;
-		if (str[*i] == '-')
-			token->minus_flag = 1;
-		if (str[*i] == '+')
-			token->plus_flag = 1;
-		if (str[*i] == ' ')
-			token->space_flag = 1;
-		if (str[*i] == '#')
-			token->hash_flag = 1;
-		(*i)++;
-	}
+	size_t count;
+
+	count = 0;
+	if (token->specifier == 'c')
+		count += print_token_char(va_arg(args, int));
+	if (token->specifier == '%')
+		count += print_token_char('%');
+	if (token->specifier == 's')
+		count += print_token_str(va_arg(args, char *));
+	if (token->specifier == 'i' || token->specifier == 'd')
+		count += print_token_sint(va_arg(args, int), "0123456789");
+	if (token->specifier == 'u')
+		count += print_token_uint(va_arg(args, unsigned int), "0123456789");
+	if (token->specifier == 'x')
+		count += print_token_uint(va_arg(args, unsigned int), "0123456789abcdef");
+	if (token->specifier == 'X')
+		count += print_token_uint(va_arg(args, unsigned int), "0123456789ABCDEF");
+	if (token->specifier == 'p')
+		count += print_token_ptr(va_arg(args, void *));
+	return (count);
 }
 
-static void	handle_width(t_printf_token *token, va_list args, char const *str, size_t *i)
-{
-	if (str[*i] == '*')
-	{
-		token->min_width = va_arg(args, int);
-		(*i)++;
-		if (token->min_width < 0)
-		{
-			token->minus_flag = 1;
-			token->min_width *= -1;
-		}
-	}
-	while (ft_strchr("0123456789", str[*i]))
-	{
-			token->min_width = token->min_width * 10 + (str[*i] - '0');
-			(*i)++;
-	}
-}
-
-static void	handle_precision(t_printf_token *token, va_list args, char const *str, size_t *i)
-{
-	if (str[*i] == '.')
-	{
-		(*i)++;
-		token->precision = 0;
-	}
-}
-
+/*DEBUG PARSEO FLAGS
+	printf("FLAGS: zero=%d minus=%d plus=%d space=%d hash=%d | i=%zu\n",
+	   token.zero_flag, token.minus_flag, token.plus_flag,
+	   token.space_flag, token.hash_flag, *i);
+	handle_width(&token, args, str, i);
+*/
 int	parse_token(va_list args, const char *str, size_t *i)
 {
 	size_t			count;
@@ -84,11 +68,9 @@ int	parse_token(va_list args, const char *str, size_t *i)
 		return (0);
 	count = 0;
 	handle_flags(&token, str, i);
-	//DEBUG PARSEO FLAGS
-	printf("FLAGS: zero=%d minus=%d plus=%d space=%d hash=%d | i=%zu\n",
-	   token.zero_flag, token.minus_flag, token.plus_flag,
-	   token.space_flag, token.hash_flag, *i);
 	handle_width(&token, args, str, i);
 	handle_precision(&token, args, str, i);
-	   return (count);
+	handle_specifier(&token, str, i);
+	count += print_token(&token, args);
+	return (count);
 }

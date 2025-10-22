@@ -6,7 +6,7 @@
 /*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 20:48:38 by masenjo           #+#    #+#             */
-/*   Updated: 2025/10/22 10:31:24 by mario            ###   ########.fr       */
+/*   Updated: 2025/10/22 13:49:06 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_print_count_str(char *str)
 	return (i);
 }
 
-int	ft_strchr(const char *str, char c)
+int	ft_iscinstr(const char *str, char c)
 {
 	size_t	i;
 
@@ -41,5 +41,12 @@ int	ft_strchr(const char *str, char c)
 			return (OK);
 		i++;
 	}
+	return (KO);
+}
+
+int	ft_isdigit(char c)
+{
+	if (c >= 48 && c <= 57)
+		return (OK);
 	return (KO);
 }
