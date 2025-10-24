@@ -6,7 +6,7 @@
 /*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 20:43:44 by masenjo           #+#    #+#             */
-/*   Updated: 2025/10/22 18:13:33 by mario            ###   ########.fr       */
+/*   Updated: 2025/10/24 09:07:28 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ static int	print_and_return_count(va_list args, char const *str)
 			count += parse_token(args, str, &i);
 		}
 		else
-			count += ft_print_count_char(str[i]);
-		i++;
+			count += ft_print_count_char(str[i++]);
 	}
 	return (count);
 }
@@ -46,22 +45,15 @@ int	ft_printf(char const *str, ...)
 	return (count);
 }
 
-/*
 int	main(void)
 {
-	int	count_mine = 0;
-	int count_printf = 0;
-	int a = -42;
-	unsigned int ua = (unsigned int) a;
-	void *p = &a;
-
-	count_printf = printf("LIBC: |%d| %i |%u| %x %X |%p| %s |%c|\n",
-			a, a, ua, 255U, 255U, p, "hola!", 'c');
-	count_mine = ft_printf("MINE: |%d| %i |%u| %x %X |%p| %s |%c|\n",
-			a, a, ua, 255U, 255U, p, "hola!", 'c');
-	ft_printf("count_printf: %d\n", count_printf);
-	ft_printf("count_mine: %d\n", count_mine);
-	ft_printf("Test: |%-+ 0#d|\n", 42);
+	ft_printf("Test: |%10s|\n", "Mariolop");
+	ft_printf("Test: |%-10s|\n", "Mariolop");
+	ft_printf("Test: |%10.5s|\n", "Mariolop");
+	ft_printf("Test: |%10.5s|\n", "Mariolop");
+	ft_printf("Test: |%10s|\n", NULL);
+	ft_printf("Test: |%-10s|\n", NULL);
+	ft_printf("Test: |%10.3s|\n", NULL);
+	ft_printf("Test: |%-10.3s|\n", NULL);
 	return (0);
 }
-*/

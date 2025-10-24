@@ -6,7 +6,7 @@
 /*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 21:19:43 by masenjo           #+#    #+#             */
-/*   Updated: 2025/10/21 13:09:00 by mario            ###   ########.fr       */
+/*   Updated: 2025/10/24 10:43:32 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ int	ft_putptr(void *p)
 
 	count = 0;
 	if (!p)
-		return (ft_print_count_str("(nil)"));
-	count += ft_print_count_str("0x");
+		return (ft_print_count_str("(nil)", 5));
+	count += ft_print_count_str("0x", 2);
 	count += ft_putnbr_u((unsigned long)p, "0123456789abcdef");
 	return (count);
 }

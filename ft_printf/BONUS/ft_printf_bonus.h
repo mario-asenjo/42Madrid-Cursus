@@ -6,7 +6,7 @@
 /*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 20:45:15 by masenjo           #+#    #+#             */
-/*   Updated: 2025/10/22 19:02:05 by mario            ###   ########.fr       */
+/*   Updated: 2025/10/24 10:50:03 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,19 @@ typedef struct  s_printf_token
 	char	specifier;
 }			t_printf_token;
 
+/* Token Printing Format */
+typedef struct	s_printf_data
+{
+	char			num_buff[50];
+	char			sign;
+	int				sign_len;
+	int				num_len;
+	int				content_len;
+	int				zero_prec;
+	int				padding;
+	unsigned int	magnitude;
+}					t_printf_data;
+
 /* Token */
 int		parse_token(va_list args, const char *str, size_t *i);
 
@@ -40,14 +53,25 @@ int		parse_token(va_list args, const char *str, size_t *i);
 void    handle_flags(t_printf_token *token, const char *str, size_t *i);
 void	handle_width(t_printf_token *token, va_list args, char const *str, size_t *i);
 void	handle_precision(t_printf_token *token, va_list args, char const *str, size_t *i);
+void	handle_specifier(t_printf_token *token, char const *str, size_t *i);
 
 /* Output Formatters */
 size_t  print_token_char(t_printf_token * token, int c);
 size_t  print_token_str(t_printf_token *token, char *str);
+size_t	print_token_sint(t_printf_token *token, int nbr, const char *base);
+
+/* Output Aux Functions */
+int 	ft_max(int a, int b);
+int		ft_print_n_char(char c, int times);
+int		uint_to_dec(unsigned int n, char *buff, const char *base);
+
+/* Token Printing Functions */
+
 
 /* Main func */
 int		ft_printf(const char *str, ...);
 
+/* AUX FUNCTIONS */
 /* Chars */
 int		ft_print_count_char(char c);
 int		ft_print_count_str(char *str, size_t len);
@@ -58,6 +82,7 @@ size_t	ft_strlen(char *str);
 /* Numbers */
 int		ft_putnbr_s(int nbr, const char *base);
 int		ft_putnbr_u(unsigned long nbr, const char *base);
+int	uint_to_dec(unsigned int n, char *buff, const char *base);
 
 /* Pointers */
 int		ft_putptr(void *p);

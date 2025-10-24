@@ -6,7 +6,7 @@
 /*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:44:57 by mario             #+#    #+#             */
-/*   Updated: 2025/10/22 18:30:19 by mario            ###   ########.fr       */
+/*   Updated: 2025/10/22 19:22:32 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ size_t	print_token(t_printf_token *token, va_list args)
 		count += print_token_char(token, '%');
 	if (token->specifier == 's')
 		count += print_token_str(token, va_arg(args, char *));
-	if (token->specifier == 'i' || token->specifier == 'd')
+	/*if (token->specifier == 'i' || token->specifier == 'd')
 		count += print_token_sint(token, va_arg(args, int), "0123456789");
 	if (token->specifier == 'u')
 		count += print_token_uint(token, va_arg(args, unsigned int), "0123456789");
@@ -47,7 +47,7 @@ size_t	print_token(t_printf_token *token, va_list args)
 	if (token->specifier == 'X')
 		count += print_token_uint(token, va_arg(args, unsigned int), "0123456789ABCDEF");
 	if (token->specifier == 'p')
-		count += print_token_ptr(token, va_arg(args, void *));
+		count += print_token_ptr(token, va_arg(args, void *));*/
 	return (count);
 }
 
