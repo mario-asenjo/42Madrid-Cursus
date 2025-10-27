@@ -1,89 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_output_utils_bonus.c                     :+:      :+:    :+:   */
+/*   ft_printf_init_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenjo <masenjo@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/24 10:15:41 by mario             #+#    #+#             */
-/*   Updated: 2025/10/24 22:30:46 by masenjo          ###   ########.fr       */
+/*   Created: 2025/10/27 18:48:03 by masenjo           #+#    #+#             */
+/*   Updated: 2025/10/27 18:48:14 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
-
-int	ft_max(int a, int b)
-{
-	if (a > b)
-		return (a);
-	else
-		return (b);
-}
-/**/
-
-int	ulong_to_dec(unsigned long n, char *buff, const char *base)
-{
-	int		len;
-	int		base_len;
-	int		i;
-	char	temp;
-
-	base_len = 0;
-	while (base[base_len])
-		base_len++;
-	len = 0;
-	if (n == 0)
-		buff[len++] = base[0];
-	while (n > 0)
-	{
-		buff[len++] = base[n % base_len];
-		n /= base_len;
-	}
-	i = 0;
-	while (i < len / 2)
-	{
-		temp = buff[i];
-		buff[i] = buff[len - 1 - i];
-		buff[len - 1 - i++] = temp;
-	}
-	buff[len] = '\0';
-	return (len);
-}
-
-void	*ft_memset(void *s, int c, size_t n)
-{
-	size_t			i;
-	unsigned char	*s_c;
-
-	s_c = (unsigned char *)s;
-	i = 0;
-	while (i < n)
-		s_c[i++] = (unsigned char)c;
-	return (s);
-}
-
-int ft_print_n_char(char c, int n)
-{
-    char    buf[64];
-    int     total;
-    int     chunk;
-    int     w;
-
-    if (n <= 0)
-        return (0);
-    ft_memset(buf, c, sizeof(buf));
-    total = 0;
-    while (n > 0)
-    {
-        chunk = (n < (int)sizeof(buf)) ? n : (int)sizeof(buf);
-        w = write(1, buf, chunk);
-        if (w < 0)
-            return (-1);
-        total += w;
-        n -= chunk;
-    }
-    return (total);
-}
 
 static void	init_data_numeric(t_printf_data *data,
 			t_printf_token *token, const char *base)

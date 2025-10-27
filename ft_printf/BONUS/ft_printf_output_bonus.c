@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_output_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenjo <masenjo@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:25:45 by mario             #+#    #+#             */
-/*   Updated: 2025/10/24 21:47:57 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/10/27 19:17:57 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ size_t	print_token_str(t_printf_token *token, char *str)
 	size_t	count;
 	int		padding;
 
-	if (!str)
+	if (!str && token->precision == -1)
 		str = "(null)";
 	len = ft_strlen(str);
 	if (token->precision >= 0 && (size_t)token->precision < len)
@@ -50,15 +50,11 @@ size_t	print_token_str(t_printf_token *token, char *str)
 		padding = 0;
 	count = 0;
 	if (token->minus_flag)
-	{
-		count += ft_print_count_str(str, len);
-		count += ft_print_n_char(' ', padding);
-	}
+		count += ft_print_count_str(str, len)
+			+ ft_print_n_char(' ', padding);
 	else
-	{
-		count += ft_print_n_char(' ', padding);
-		count += ft_print_count_str(str, len);
-	}
+		count += ft_print_n_char(' ', padding)
+			+ ft_print_count_str(str, len);
 	return (count);
 }
 

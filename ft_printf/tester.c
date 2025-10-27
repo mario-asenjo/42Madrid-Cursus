@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tester.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenjo <masenjo@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:43:17 by masenjo           #+#    #+#             */
-/*   Updated: 2025/10/24 20:33:10 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/10/27 19:00:21 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,6 +227,37 @@ int	main(void)
 	printf("|%020p|\n", p);
 	ft_printf("|%020p|\n", p);
 
+	printf("\n======= TEST %%s erroneos ========\n");
+	libc = printf("%5%");
+	printf("\n");
+	mine = ft_printf("%5%");
+	printf("\n");
+	printf("count libc: %d | count mine: %d\n\n", libc, mine);
+	
+	libc = printf("%-5%");
+	printf("\n");
+	mine = ft_printf("%-5%");
+	printf("\n");
+	printf("count libc: %d | count mine: %d\n\n", libc, mine);
+
+	libc = printf("%-05%");
+	printf("|\n");
+	mine = ft_printf("%-05%");
+	printf("|\n");
+	printf("count libc: %d | count mine: %d\n\n", libc, mine);
+
+	libc = printf("%.03s", NULL);
+	printf("|\n");
+	mine = ft_printf("%.03s", NULL);
+	printf("|\n");
+	printf("count libc: %d | count mine: %d\n\n", libc, mine);
+
+	libc = printf("%3.1s", NULL);
+	printf("|\n");
+	mine = ft_printf("%3.1s", NULL);
+	printf("|\n");
+	printf("count libc: %d | count mine: %d\n\n", libc, mine);
+	
 	printf("\n========== END OF TESTS ==========\n");
 	return (0);
 }
