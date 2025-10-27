@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 10:15:41 by mario             #+#    #+#             */
-/*   Updated: 2025/10/24 20:49:15 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/10/24 22:30:46 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,39 @@ int	ulong_to_dec(unsigned long n, char *buff, const char *base)
 	return (len);
 }
 
-int	ft_print_n_char(char c, int times)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	int	count;
+	size_t			i;
+	unsigned char	*s_c;
 
-	count = 0;
-	while (times--)
-		count += ft_print_count_char(c);
-	return (count);
+	s_c = (unsigned char *)s;
+	i = 0;
+	while (i < n)
+		s_c[i++] = (unsigned char)c;
+	return (s);
+}
+
+int ft_print_n_char(char c, int n)
+{
+    char    buf[64];
+    int     total;
+    int     chunk;
+    int     w;
+
+    if (n <= 0)
+        return (0);
+    ft_memset(buf, c, sizeof(buf));
+    total = 0;
+    while (n > 0)
+    {
+        chunk = (n < (int)sizeof(buf)) ? n : (int)sizeof(buf);
+        w = write(1, buf, chunk);
+        if (w < 0)
+            return (-1);
+        total += w;
+        n -= chunk;
+    }
+    return (total);
 }
 
 static void	init_data_numeric(t_printf_data *data,

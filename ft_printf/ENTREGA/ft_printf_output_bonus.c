@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:25:45 by mario             #+#    #+#             */
-/*   Updated: 2025/10/24 21:47:57 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/10/24 22:35:26 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,29 +36,25 @@ size_t	print_token_char(t_printf_token *token, int c)
 
 size_t	print_token_str(t_printf_token *token, char *str)
 {
-	size_t	len;
-	size_t	count;
+	size_t	slen;
 	int		padding;
+	size_t	count;
 
 	if (!str)
 		str = "(null)";
-	len = ft_strlen(str);
-	if (token->precision >= 0 && (size_t)token->precision < len)
-		len = token->precision;
-	padding = token->min_width - (int)len;
+	slen = ft_strlen(str, token);
+	if (token->precision >= 0 && (int)slen > token->precision)
+		slen = token->precision;
+	padding = (int)token->min_width - (int)slen;
 	if (padding < 0)
 		padding = 0;
 	count = 0;
 	if (token->minus_flag)
-	{
-		count += ft_print_count_str(str, len);
-		count += ft_print_n_char(' ', padding);
-	}
+		count += ft_print_count_str(str, slen)
+			+ ft_print_n_char(' ', padding);
 	else
-	{
-		count += ft_print_n_char(' ', padding);
-		count += ft_print_count_str(str, len);
-	}
+		count += ft_print_n_char(' ', padding)
+			+ ft_print_count_str(str, slen);
 	return (count);
 }
 

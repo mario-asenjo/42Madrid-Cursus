@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 20:48:38 by masenjo           #+#    #+#             */
-/*   Updated: 2025/10/24 21:43:27 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/10/24 22:34:48 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,17 @@ int	ft_print_count_char(char c)
 
 int	ft_print_count_str(char *str, size_t len)
 {
-	write(1, str, len);
-	return ((int)len);
+	if (!str)
+	{
+		if (len > 6)
+			len = 6;
+		if (len == 0)
+			return (0);
+		return (write(1, "(null)", len));
+	}
+	if (len == 0)
+		return (0);
+	return (write(1, str, len));
 }
 
 int	ft_iscinstr(const char *str, char c)
@@ -44,12 +53,26 @@ int	ft_isdigit(char c)
 	return (KO);
 }
 
-size_t	ft_strlen(char *str)
+int	ft_strcmp(char *s1, char *s2)
+{
+	while (*(s1++) && *(s2++))
+	{
+		if (*s1 != *s2)
+			return ((int)*s1 - (int)*s2);
+	}
+	return (0);
+}
+
+size_t	ft_strlen(char *str, t_printf_token *token)
 {
 	size_t	i;
 
-	if (!str)
+	if (!ft_strcmp(str, "(null)") && (token->precision < 3))
+		return (0);
+	if (!ft_strcmp(str, "(null)"))
 		return (6);
+	if (!ft_strcmp(str, ""))
+		return (0);
 	i = 0;
 	while (str[i])
 		i++;

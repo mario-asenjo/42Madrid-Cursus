@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 20:45:15 by masenjo           #+#    #+#             */
-/*   Updated: 2025/10/24 20:49:01 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/10/24 21:58:28 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int		ft_print_count_char(char c);
 int		ft_print_count_str(char *str, size_t len);
 int		ft_iscinstr(const char *str, char c);
 int		ft_isdigit(char c);
-size_t	ft_strlen(char *str);
+size_t	ft_strlen(char *str, t_printf_token *token);
 
 /* Numbers */
 int		ft_check_base(const char *base);

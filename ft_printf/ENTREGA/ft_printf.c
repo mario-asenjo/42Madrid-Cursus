@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 20:43:44 by masenjo           #+#    #+#             */
-/*   Updated: 2025/10/24 20:56:40 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/10/24 20:54:47 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,4 @@ int	ft_printf(char const *str, ...)
 	ft_printf("count_printf: %d\n", count_printf);
 	ft_printf("count_mine: %d\n", count_mine);
 	return (0);
-}
-*/
+}*/
