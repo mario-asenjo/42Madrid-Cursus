@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:25:45 by mario             #+#    #+#             */
-/*   Updated: 2025/10/27 19:17:57 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/10/29 20:17:51 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ size_t	print_token_char(t_printf_token *token, int c)
 	count = 0;
 	padding = token->min_width - 1;
 	if (padding < 0)
+		padding = 0;
+	if (token->specifier == '%')
 		padding = 0;
 	if (token->minus_flag)
 	{
@@ -40,7 +42,7 @@ size_t	print_token_str(t_printf_token *token, char *str)
 	size_t	count;
 	int		padding;
 
-	if (!str && token->precision == -1)
+	if (!str && (token->precision == -1 || token->precision >= 6))
 		str = "(null)";
 	len = ft_strlen(str);
 	if (token->precision >= 0 && (size_t)token->precision < len)
@@ -84,10 +86,10 @@ size_t	print_token_ptr(t_printf_token *token, void *p,
 {
 	t_printf_data	data;
 
-	if (!p)
-		return (ft_print_count_str("(nil)", 5));
 	if (!ft_check_base(base))
 		return (0);
+	if (!p)
+		return (print_token_str(token, "(nil)"));
 	init_data_to_print_ptr(&data, token, p, base);
 	return (ft_print_number_with_flags(token, &data));
 }
