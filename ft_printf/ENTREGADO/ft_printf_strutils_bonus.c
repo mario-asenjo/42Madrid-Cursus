@@ -1,46 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_printf_strutils_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/06 20:43:44 by masenjo           #+#    #+#             */
-/*   Updated: 2025/10/31 17:06:52 by masenjo          ###   ########.fr       */
+/*   Created: 2025/10/10 20:48:38 by masenjo           #+#    #+#             */
+/*   Updated: 2025/10/27 19:03:58 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-static int	print_and_return_count(va_list args, char const *str)
+int	ft_print_count_char(char c)
+{
+	return (write(1, &c, 1));
+}
+
+int	ft_print_count_str(char *str, size_t len)
+{
+	write(1, str, len);
+	return ((int)len);
+}
+
+int	ft_iscinstr(const char *str, char c)
 {
 	size_t	i;
-	int		count;
 
-	count = 0;
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '%' && str[i + 1])
-		{
-			i++;
-			count += parse_token(args, str, &i);
-		}
-		else
-			count += ft_print_count_char(str[i++]);
+		if (str[i] == c)
+			return (OK);
+		i++;
 	}
-	return (count);
+	return (KO);
 }
 
-int	ft_printf(char const *str, ...)
+int	ft_isdigit(char c)
 {
-	va_list	ap;
-	int		count;
+	if (c >= 48 && c <= 57)
+		return (OK);
+	return (KO);
+}
+
+size_t	ft_strlen(char *str)
+{
+	size_t	i;
 
 	if (!str)
-		return (-1);
-	va_start(ap, str);
-	count = print_and_return_count(ap, str);
-	va_end(ap);
-	return (count);
+		return (0);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

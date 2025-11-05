@@ -24,6 +24,8 @@ CFLAGS		=	-Wall -Wextra -Werror
 
 NAME		=	libft.a
 
+TEST_SRC	=	main.c
+
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
@@ -42,5 +44,9 @@ bonus:			$(BONUS_FLAG)
 $(BONUS_FLAG): $(OBJS) $(BONUS_OBJS)
 				ar -rcs $(NAME) $(OBJS) $(BONUS_OBJS)
 				touch $(BONUS_FLAG)
+
+test:			bonus $(NAME) $(TEST_SRC)
+			$(CC) -Wall -Wextra $(TEST_SRC) -L. -lft -o test
+			./test
 
 .PHONY:			all clean fclean re bonus

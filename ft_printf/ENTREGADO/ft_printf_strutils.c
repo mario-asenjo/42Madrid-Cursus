@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf_strutils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/06 20:45:15 by masenjo           #+#    #+#             */
-/*   Updated: 2025/10/31 17:07:34 by masenjo          ###   ########.fr       */
+/*   Created: 2025/10/10 20:48:38 by masenjo           #+#    #+#             */
+/*   Updated: 2025/10/27 18:45:31 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include <stdio.h>
-# include <unistd.h>
+int	ft_print_count_char(char c)
+{
+	return (write(1, &c, 1));
+}
 
-/* Main func */
-int		ft_printf(const char *str, ...);
+int	ft_print_count_str(char *str)
+{
+	size_t	i;
 
-/* Chars */
-int		ft_print_count_char(char c);
-int		ft_print_count_str(char *str);
-/* Numbers */
-int		ft_putnbr_s(int nbr, const char *base);
-int		ft_putnbr_u(unsigned long nbr, const char *base);
-/* Pointers */
-int		ft_putptr(void *p);
-
-#endif
+	if (!str)
+		return (write(1, "(null)", 6));
+	i = 0;
+	while (str[i])
+		i++;
+	write(1, str, i);
+	return (i);
+}
