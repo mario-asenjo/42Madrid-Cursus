@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_token_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: masenjo <masenjo@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:44:57 by mario             #+#    #+#             */
-/*   Updated: 2025/10/31 17:06:40 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/06 20:54:34 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ size_t	print_token(t_printf_token *token, va_list args)
 	if (token->specifier == 'p')
 		count += print_token_ptr(token, va_arg(args,
 					void *), "0123456789abcdef");
+	if (token->specifier == 'f')
+		count += print_token_float(token, va_arg(args, double));		
 	return (count);
 }
 

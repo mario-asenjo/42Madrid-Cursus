@@ -10,6 +10,7 @@ SRCS =	ft_printf.c \
 
 BONUS_SRCS =	ft_printf_bonus.c \
 				ft_printf_numutils_bonus.c \
+				ft_printf_float_bonus.c \
 				ft_printf_strutils_bonus.c \
 				ft_printf_token_bonus.c \
 				ft_printf_handlers_bonus.c \
