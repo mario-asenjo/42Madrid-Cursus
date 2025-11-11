@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/06 20:16:19 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/11 18:15:44 by masenjo          ###   ########.fr       */
+/*   Created: 2025/09/29 11:45:22 by masenjo           #+#    #+#             */
+/*   Updated: 2025/09/29 11:52:08 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-void    my_mlx_pixel_put(t_sl_img *data, int x, int y, int color)
+void	ft_putnbr_fd(int n, int fd)
 {
-    char *dst;
+	long	nbl;
 
-    dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-    *(unsigned int *)dst = color;
+	nbl = (long) n;
+	if (nbl < 0)
+	{
+		write(fd, "-", 1);
+		nbl *= -1;
+	}
+	if (nbl / 10 > 0)
+		ft_putnbr_fd(nbl / 10, fd);
+	ft_putchar_fd(nbl % 10 + '0', fd);
 }

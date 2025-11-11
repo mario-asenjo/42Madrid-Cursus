@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/06 20:16:19 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/11 18:15:44 by masenjo          ###   ########.fr       */
+/*   Created: 2025/09/29 11:45:22 by masenjo           #+#    #+#             */
+/*   Updated: 2025/09/29 11:52:41 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-void    my_mlx_pixel_put(t_sl_img *data, int x, int y, int color)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-    char *dst;
+	unsigned char const	*p_s1;
+	unsigned char const	*p_s2;
+	size_t				i;
 
-    dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-    *(unsigned int *)dst = color;
+	i = 0;
+	p_s1 = (unsigned char const *)s1;
+	p_s2 = (unsigned char const *)s2;
+	while (i < n)
+	{
+		if (p_s1[i] != p_s2[i])
+			return ((int)p_s1[i] - p_s2[i]);
+		i++;
+	}
+	return (0);
 }

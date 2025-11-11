@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/06 20:16:19 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/11 18:15:44 by masenjo          ###   ########.fr       */
+/*   Created: 2025/09/29 11:45:22 by masenjo           #+#    #+#             */
+/*   Updated: 2025/09/29 15:32:19 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-void    my_mlx_pixel_put(t_sl_img *data, int x, int y, int color)
+t_list	*ft_lstnew(void *content)
 {
-    char *dst;
+	t_list	*new;
 
-    dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-    *(unsigned int *)dst = color;
+	new = (t_list *) malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }

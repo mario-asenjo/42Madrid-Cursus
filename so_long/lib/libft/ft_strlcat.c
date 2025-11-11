@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/06 20:16:19 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/11 18:15:44 by masenjo          ###   ########.fr       */
+/*   Created: 2025/09/29 11:45:22 by masenjo           #+#    #+#             */
+/*   Updated: 2025/09/29 11:51:25 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-void    my_mlx_pixel_put(t_sl_img *data, int x, int y, int color)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-    char *dst;
+	size_t	i;
+	size_t	j;
+	size_t	s_len;
 
-    dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-    *(unsigned int *)dst = color;
+	i = 0;
+	while (dest[i] && i < size)
+	{
+		i++;
+	}
+	s_len = ft_strlen(src) + i;
+	if (ft_strlen(dest) >= size)
+		return (s_len);
+	j = 0;
+	while (src[j] && i < (size - 1))
+	{
+		dest[i] = src[j];
+		j++;
+		i++;
+	}
+	dest[i] = '\0';
+	return (s_len);
 }

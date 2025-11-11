@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/06 20:16:19 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/11 18:15:44 by masenjo          ###   ########.fr       */
+/*   Created: 2025/09/29 11:45:22 by masenjo           #+#    #+#             */
+/*   Updated: 2025/09/29 11:49:15 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-void    my_mlx_pixel_put(t_sl_img *data, int x, int y, int color)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-    char *dst;
+	size_t	i;
+	size_t	l_len;
 
-    dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-    *(unsigned int *)dst = color;
+	if (*little == '\0')
+		return ((char *)big);
+	if (!big && len == 0)
+		return (NULL);
+	i = 0;
+	l_len = ft_strlen(little);
+	while (big[i] && (i + l_len) <= len)
+	{
+		if (!ft_strncmp(&big[i], little, l_len))
+			return ((char *)&big[i]);
+		i++;
+	}
+	return (0);
 }
