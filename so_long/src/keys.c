@@ -12,7 +12,6 @@
 
 #include "../include/keys.h"
 
-/* Helpers (opcionales, para SRP) */
 int	is_esc(int k)
 {
 	return (k == K_ESC_MAC || k == K_ESC_LNX);

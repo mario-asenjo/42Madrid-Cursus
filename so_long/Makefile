@@ -6,7 +6,7 @@
 #    By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/11 17:26:56 by masenjo           #+#    #+#              #
-#    Updated: 2025/11/11 19:24:40 by masenjo          ###   ########.fr        #
+#    Updated: 2025/11/14 17:59:22 by masenjo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME        := so_long
 # Toolchain
 # =========================
 CC          := cc
-CFLAGS      := -Wall -Wextra -Werror -g3 -fsanitize=memory -fsanitize-memory-track-origins -Iinclude
+CFLAGS      := -Wall -Wextra -Werror -fsanitize=address,undefined -Iinclude -g3
 
 # =========================
 # Directories
@@ -28,14 +28,14 @@ SRCDIR      := src
 LIBFT_DIR   := lib/libft
 PRINTF_DIR  := lib/ft_printf
 GNL_DIR     := lib/gnl
-MLX_LIB     := lib/libmlx.a
+MLX_LIB     := lib/libmlx_Linux.a
 
 # =========================
 # System libs (elige una)
 # macOS:  -framework OpenGL -framework AppKit
 # Linux:  -lXext -lX11 -lm
 # =========================
-SYS_LIBS    := -lXext -lX11 -lm
+SYS_LIBS    := -lXext -lX11 -lm -lz
 
 # =========================
 # Source files (OBLIGATORIA)
@@ -46,6 +46,7 @@ SRCS        := \
 	$(SRCDIR)/init_game.c \
 	$(SRCDIR)/utils.c \
 	$(SRCDIR)/keys.c \
+	$(SRCDIR)/mouse.c \
 	$(SRCDIR)/hooks.c \
 	$(SRCDIR)/destroy.c
 

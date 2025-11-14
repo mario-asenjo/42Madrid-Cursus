@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 21:08:50 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/11 19:34:21 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/14 17:35:08 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,39 +42,18 @@ typedef struct s_solong
 	int			c_moves;
 	int			c_collected;
 	int			c_total_coll;
-	/*
-		SI QUIERO CORRER PONER AQUÍ FLAGSITA
-	*/
-	t_sl_img	*wall;
-	t_sl_img	*floor;
-	t_sl_img	*player;
-	t_sl_img	*coin;
-	t_sl_img	*door;
+
+	t_sl_img	wall;
+	t_sl_img	floor;
+	t_sl_img	player;
+	t_sl_img	coin;
+	t_sl_img	door;
 }				t_solong;
 
-/*
-** Initialize so_long struct / game
-** Recieves a struct to initialize, if cannot do it
-** returns error code 0 -> KO.
-*/
 int		init_game(t_solong *game_token, int width, int height, char *title);
 void	destroy_game(t_solong *game, int exitCode);
 void	register_hooks(t_solong *game);
-int		on_key(int keycode, t_solong *game);
-int		on_close(t_solong *game);
 
-/*
-** Mimic mlx_pixel_put but many times faster
-*/
 void    my_mlx_pixel_put(t_sl_img *data, int x, int y, int color);
-
-/*
-* Helpers para controllers de ratón y teclado
-*/
-int		is_esc(int k);
-int		is_left(int k);
-int		is_right(int k);
-int		is_up(int k);
-int		is_down(int k);
 
 #endif

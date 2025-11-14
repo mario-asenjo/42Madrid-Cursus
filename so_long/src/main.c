@@ -24,11 +24,10 @@ int	main(int argc, char **argv)
 		DE LA CUAL SACAMOS EL WIDTH Y HEIGHT? O ESO NO DEPENDE DEL MAPA?
 	*/
 
-	if (!init_game(&game, 1920, 1080, "SoLong - By masenjo - 42Madrid"))
+	if (!init_game(&game, 300, 300, "SoLong - By masenjo - 42Madrid"))
 		return (perror("No pudo inicializarse solong_t -> main()."), 1);
-	ft_printf("Todo ha ido OK\n");
 	register_hooks(&game);
+	ft_printf("%s\n", argv[1]);
 	mlx_loop(game.connection);
-	ft_printf("%s", argv[1]);
 	return (0);
 }

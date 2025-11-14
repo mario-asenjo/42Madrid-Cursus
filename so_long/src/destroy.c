@@ -12,43 +12,47 @@
 
 #include "../include/so_long.h"
 
-void	destroy_images(t_solong *game)
+static void	destroy_images(t_solong *game)
 {
-	if (game->coin->img_ptr)
+	if (game->coin.img_ptr)
 	{
-		mlx_destroy_image(game->connection, game->coin->img_ptr);
-		game->coin->img_ptr = NULL;
+		mlx_destroy_image(game->connection, game->coin.img_ptr);
+		game->coin.img_ptr = NULL;
 	}
-	if (game->player->img_ptr)
+	if (game->player.img_ptr)
 	{
-		mlx_destroy_image(game->connection, game->player->img_ptr);
-		game->player->img_ptr = NULL;
+		mlx_destroy_image(game->connection, game->player.img_ptr);
+		game->player.img_ptr = NULL;
 	}
-	if (game->wall->img_ptr)
+	if (game->wall.img_ptr)
 	{
-		mlx_destroy_image(game->connection, game->wall->img_ptr);
-		game->wall->img_ptr = NULL;
+		mlx_destroy_image(game->connection, game->wall.img_ptr);
+		game->wall.img_ptr = NULL;
 	}
-	if (game->door->img_ptr)
+	if (game->door.img_ptr)
 	{
-		mlx_destroy_image(game->connection, game->door->img_ptr);
-		game->door->img_ptr = NULL;
+		mlx_destroy_image(game->connection, game->door.img_ptr);
+		game->door.img_ptr = NULL;
 	}
-	if (game->floor->img_ptr)
+	if (game->floor.img_ptr)
 	{
-		mlx_destroy_image(game->connection, game->floor->img_ptr);
-		game->floor->img_ptr = NULL;
+		mlx_destroy_image(game->connection, game->floor.img_ptr);
+		game->floor.img_ptr = NULL;
 	}
+}
+
+static void destroy_window(t_solong *game)
+{
+	if (game->window)
+		mlx_destroy_window(game->connection, game->window);
 }
 
 void	destroy_game(t_solong *game, int exitCode)
 {
 	destroy_images(game);
-	if (game->window)
-	{
-		mlx_destroy_window(game->connection, game->window);
-		game->window = NULL;
-	}
+	destroy_window(game);
+	game->window = NULL;
 	free(game->connection);
+	game->connection = NULL;
 	exit(exitCode);
 }
