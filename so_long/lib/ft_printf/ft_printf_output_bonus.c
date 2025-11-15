@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:25:45 by mario             #+#    #+#             */
-/*   Updated: 2025/10/29 20:17:51 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/14 20:21:07 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ size_t	print_token_str(t_printf_token *token, char *str)
 
 	if (!str && (token->precision == -1 || token->precision >= 6))
 		str = "(null)";
-	len = ft_strlen(str);
+	len = 0;
+	while (str[len])
+		len++;
 	if (token->precision >= 0 && (size_t)token->precision < len)
 		len = token->precision;
 	padding = token->min_width - (int)len;

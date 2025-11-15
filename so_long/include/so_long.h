@@ -6,15 +6,17 @@
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 21:08:50 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/14 17:35:08 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/14 20:10:52 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include <stdio.h>
+# include <fcntl.h>
 # include "ft_printf_bonus.h"
 # include "libft.h"
+# include "map.h"
 # include "mlx.h"
 
 typedef struct s_sl_img
@@ -49,6 +51,8 @@ typedef struct s_solong
 	t_sl_img	coin;
 	t_sl_img	door;
 }				t_solong;
+
+char	*get_next_line(int fd);
 
 int		init_game(t_solong *game_token, int width, int height, char *title);
 void	destroy_game(t_solong *game, int exitCode);

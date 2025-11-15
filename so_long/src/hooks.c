@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 18:16:21 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/14 18:03:40 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/14 19:42:45 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	on_key(int keycode, t_solong *game)
 	return (0);
 }
 
-int	on_mouse(int button, int x, int y)
+int	on_mouse(int button, int x, int y, t_solong *game)
 {
 	if (is_left_click(button))
 		ft_printf("Click izquierdo pulsado en:\nx: %d\ny: %d\n", x, y);
@@ -48,6 +48,7 @@ int	on_mouse(int button, int x, int y)
 		ft_printf("Scroll hacia arriba hecho en:\nx: %d\ny: %d\n", x, y);
 	else if (is_scroll_dw(button))
 		ft_printf("Scroll hacia ababjo hecho en:\nx: %d\ny: %d\n", x, y);
+	ft_printf("Map Vals: TileSize: %d\n", game->tile);
 	return (0);
 }
 

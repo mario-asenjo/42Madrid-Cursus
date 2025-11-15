@@ -6,7 +6,7 @@
 #    By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/11 17:26:56 by masenjo           #+#    #+#              #
-#    Updated: 2025/11/14 17:59:22 by masenjo          ###   ########.fr        #
+#    Updated: 2025/11/14 20:15:02 by masenjo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,8 @@ SRCS        := \
 	$(SRCDIR)/keys.c \
 	$(SRCDIR)/mouse.c \
 	$(SRCDIR)/hooks.c \
+	$(SRCDIR)/map_parse.c \
+	$(SRCDIR)/map_utils.c \
 	$(SRCDIR)/destroy.c
 
 # =========================

@@ -1,45 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_strutils_bonus.c                         :+:      :+:    :+:   */
+/*   map_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/10 20:48:38 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/14 20:22:04 by masenjo          ###   ########.fr       */
+/*   Created: 2025/11/14 19:44:53 by masenjo           #+#    #+#             */
+/*   Updated: 2025/11/14 20:14:43 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "../include/so_long.h"
 
-int	ft_print_count_char(char c)
+char	**map_load(char *filename, t_solong *game)
 {
-	return (write(1, &c, 1));
-}
-
-int	ft_print_count_str(char *str, size_t len)
-{
-	write(1, str, len);
-	return ((int)len);
-}
-
-int	ft_iscinstr(const char *str, char c)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i])
+	int		fd;
+	int		line_count;
+	char	*line;
+	
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		return (NULL);
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
-		if (str[i] == c)
-			return (OK);
-		i++;
+		line_count++;
+		
+		line = get_next_line(fd);
+		free(line);
 	}
-	return (KO);
-}
-
-int	ft_isdigit(char c)
-{
-	if (c >= 48 && c <= 57)
-		return (OK);
-	return (KO);
+	return (game->map);
 }
