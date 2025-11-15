@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 20:04:45 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/15 20:44:08 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/15 20:54:17 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	map_free(t_solong *game)
 	line = 0;
 	while (game->m_height > line)
 	{
-		free(game->map[line]);
+		if (game->map[line])
+			free(game->map[line]);
 		line++;
 	}
 	free(game->map);
