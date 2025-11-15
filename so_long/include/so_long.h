@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 21:08:50 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/14 20:10:52 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/15 20:43:19 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define SO_LONG_H
 # include <stdio.h>
 # include <fcntl.h>
+# include <stdlib.h>
 # include "ft_printf_bonus.h"
 # include "libft.h"
-# include "map.h"
 # include "mlx.h"
 
 typedef struct s_sl_img
@@ -57,6 +57,10 @@ char	*get_next_line(int fd);
 int		init_game(t_solong *game_token, int width, int height, char *title);
 void	destroy_game(t_solong *game, int exitCode);
 void	register_hooks(t_solong *game);
+
+char	**map_load(char *filename, t_solong *game);
+void	map_free(t_solong *game);
+int		map_check_extension(char *filename);
 
 void    my_mlx_pixel_put(t_sl_img *data, int x, int y, int color);
 

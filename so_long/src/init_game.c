@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 21:31:09 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/14 17:28:19 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/15 20:39:55 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@ static void init_game_flags(t_solong *game) {
 	game->c_collected = 0;
 	game->c_moves = 0;
 	game->c_total_coll = 0;
-	game->m_height = 0;
-	game->m_width = 0;
-	game->map = NULL;
 	init_game_image_vals(game);
 }
 
