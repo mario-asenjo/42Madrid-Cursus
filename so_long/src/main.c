@@ -20,9 +20,10 @@ int	main(int argc, char **argv)
 		return (write(2, "Error.\n", 7), 1);
 	if (!map_check_extension(argv[1]))
 		return (write(2, "Error.\n", 7), 1);
-	ft_printf("Mapa validado.\n");
+	ft_printf("Extension de mapa validado.\n");
 	if (!map_load(argv[1], &game))
 		return (write(2, "Error.\n", 7), map_free(&game), 1);
+	ft_printf("Mapa cargado correctamente.\n");
 	if (!init_game(&game, 300, 300, "SoLong - By masenjo - 42Madrid"))
 		return (write(2, "Error.\n", 7), map_free(&game), 1);
 	register_hooks(&game);
