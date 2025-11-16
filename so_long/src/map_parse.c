@@ -103,8 +103,6 @@ char	**map_load(char *filename, t_solong *game)
 	if (!game->map)
 		return (0);
 	game->m_width = ft_strlen(game->map[0]);
-	if (game->m_height != game->m_width)
-		return (0);
 	if (!map_validate(game))
 		return (0);
 	return (game->map);
