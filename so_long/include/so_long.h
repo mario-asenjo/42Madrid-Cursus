@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 21:08:50 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/15 20:43:19 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/19 13:18:53 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 # include "libft.h"
 # include "mlx.h"
 
+typedef struct s_position
+{
+	int	x;
+	int	y;
+}		t_position;
+
 typedef struct s_sl_img
 {
 	void	*img_ptr;
@@ -29,7 +35,6 @@ typedef struct s_sl_img
 	int		line_length;
 	int		endian;
 }			t_sl_img;
-
 
 typedef struct s_solong
 {
@@ -44,6 +49,9 @@ typedef struct s_solong
 	int			c_moves;
 	int			c_collected;
 	int			c_total_coll;
+
+	t_position	player_pos;
+	t_position	exit_pos;
 
 	t_sl_img	wall;
 	t_sl_img	floor;
