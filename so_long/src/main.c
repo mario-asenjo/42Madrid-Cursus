@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 20:16:15 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/15 20:54:30 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/19 12:59:41 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	if (!map_load(argv[1], &game))
 		return (write(2, "Error.\n", 7), map_free(&game), 1);
 	ft_printf("Mapa cargado correctamente.\n");
-	if (!init_game(&game, 300, 300, "SoLong - By masenjo - 42Madrid"))
+	if (!init_game(&game, game.m_width, game.m_height, "SoLong - By masenjo - 42Madrid"))
 		return (write(2, "Error.\n", 7), map_free(&game), 1);
 	register_hooks(&game);
 	ft_printf("Mapa cargado -> %s\n", argv[1]);
