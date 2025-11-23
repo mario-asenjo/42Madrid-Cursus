@@ -26,13 +26,25 @@ int	on_key(int keycode, t_solong *game)
 	if (is_esc(keycode))
 		on_close(game);
 	else if (is_down(keycode))
-		ft_printf("Vas hacia abajo\n");
+	{
+		game->c_moves++;
+		ft_printf("Vas hacia abajo Count: %d\n", game->c_moves);
+	}
 	else if (is_up(keycode))
-		ft_printf("Vas hacia arriba\n");
+	{
+		game->c_moves++;
+		ft_printf("Vas hacia arrba Count: %d\n", game->c_moves);
+	}
 	else if (is_left(keycode))
-		ft_printf("Vas hacia izquierda\n");
+	{
+		game->c_moves++;
+		ft_printf("Vas hacia la izquierda Count: %d\n", game->c_moves);
+	}
 	else if (is_right(keycode))
-		ft_printf("Vas hacia derecha\n");
+	{
+		game->c_moves++;
+		ft_printf("Vas hacia la derecha Count: %d\n", game->c_moves);
+	}
 	return (0);
 }
 
