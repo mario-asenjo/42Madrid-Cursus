@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 18:55:03 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/15 20:44:04 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/23 13:58:59 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-static void	destroy_images(t_solong *game)
+void	destroy_images(t_solong *game)
 {
 	if (game->coin.img_ptr)
 	{
@@ -47,7 +47,7 @@ static void destroy_window(t_solong *game)
 		mlx_destroy_window(game->connection, game->window);
 }
 
-void	destroy_game(t_solong *game, int exitCode)
+void	destroy_game(t_solong *game)
 {
 	destroy_images(game);
 	destroy_window(game);
@@ -55,5 +55,4 @@ void	destroy_game(t_solong *game, int exitCode)
 	free(game->connection);
 	game->connection = NULL;
 	map_free(game);
-	exit(exitCode);
 }

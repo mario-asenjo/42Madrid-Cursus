@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 18:16:21 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/14 19:42:45 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/23 14:08:44 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 int	on_close(t_solong *game)
 {
 	ft_printf("Procediendo a cerrar el juego.\n");
-	destroy_game(game, 0);
+	destroy_game(game);
+	exit(0);
 	return (0);
 }
 

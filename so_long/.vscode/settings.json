@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "mouse.h": "c"
+        "mouse.h": "c",
+        "so_long.h": "c"
     }
 }

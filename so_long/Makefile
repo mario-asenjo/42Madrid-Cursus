@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+         #
+#    By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/11 17:26:56 by masenjo           #+#    #+#              #
-#    Updated: 2025/11/14 20:15:02 by masenjo          ###   ########.fr        #
+#    Updated: 2025/11/23 14:07:28 by masenjo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,9 @@ SRCS        := \
 	$(SRCDIR)/hooks.c \
 	$(SRCDIR)/map_parse.c \
 	$(SRCDIR)/map_utils.c \
+	$(SRCDIR)/path_find.c \
+	$(SRCDIR)/assets.c \
+	$(SRCDIR)/render.c \
 	$(SRCDIR)/destroy.c
 
 # =========================
@@ -77,7 +80,7 @@ PRINTF_A    := $(PRINTF_DIR)/libftprintf.a
 GNL_A       := $(GNL_DIR)/libgnl.a
 
 # =========================
-# Rules (norma 42)
+# Rules (norme 42)
 # =========================
 .PHONY: all clean fclean re bonus
 
@@ -86,11 +89,11 @@ all: $(NAME)
 $(NAME): $(OBJS) $(LIBFT_A) $(PRINTF_A) $(GNL_A) $(MLX_LIB)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) $(PRINTF_A) $(GNL_A) $(MLX_LIB) $(SYS_LIBS) -o $(NAME)
 
-# Objetos del proyecto
+# Proyect objeccts
 $(SRCDIR)/%.o: $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Construcción de cada librería (respetando su Makefile interno)
+# Lbrary contstructon
 $(LIBFT_A):
 	$(MAKE) bonus -C $(LIBFT_DIR)
 
@@ -100,7 +103,7 @@ $(PRINTF_A):
 $(GNL_A):
 	$(MAKE) bonus -C $(GNL_DIR)
 
-# Limpiezas
+# Cleaning
 clean:
 	rm -f $(OBJS)
 	$(MAKE) -C $(LIBFT_DIR) clean
@@ -115,6 +118,6 @@ fclean: clean
 
 re: fclean all
 
-# Compilar con bonus: usa la misma salida $(NAME)
+# Compile with bonus uses same rule as name rule and falls in ifeq statement
 bonus:
 	$(MAKE) BONUS=1

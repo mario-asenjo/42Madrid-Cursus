@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 21:31:09 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/19 13:30:38 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/23 13:50:10 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,18 @@ static void init_game_flags(t_solong *game) {
 	init_game_image_vals(game);
 }
 
-int	init_game(t_solong *game_token, int width, int height, char *title)
+int	init_game(t_solong *game, int width, int height, char *title)
 {
-	game_token->connection = mlx_init();
-	if (!game_token->connection)
+	game->connection = mlx_init();
+	if (!game->connection)
 		return (KO);
-	game_token->tile = 64;
-	game_token->w_width = width * game_token->tile;
-	game_token->w_height = height * game_token->tile;
-	game_token->window = mlx_new_window(game_token->connection,
-			game_token->w_width, game_token->w_height, title);
-	if (!game_token->window)
-		return (destroy_game(game_token, 1), KO);
-	init_game_flags(game_token);
+	game->tile = 64;
+	game->w_width = width * game->tile;
+	game->w_height = height * game->tile;
+	game->window = mlx_new_window(game->connection,
+			game->w_width, game->w_height, title);
+	if (!game->window)
+		return (destroy_game(game), KO);
+	init_game_flags(game);
 	return (OK);
 }

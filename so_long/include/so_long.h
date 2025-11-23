@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 21:08:50 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/19 13:18:53 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/23 14:08:10 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,17 @@ typedef struct s_solong
 char	*get_next_line(int fd);
 
 int		init_game(t_solong *game_token, int width, int height, char *title);
-void	destroy_game(t_solong *game, int exitCode);
+void	destroy_game(t_solong *game);
 void	register_hooks(t_solong *game);
 
 char	**map_load(char *filename, t_solong *game);
 void	map_free(t_solong *game);
 int		map_check_extension(char *filename);
+int 	find_path_to_exit_with_all_c(t_solong *game);
 
 void    my_mlx_pixel_put(t_sl_img *data, int x, int y, int color);
+void	destroy_images(t_solong *game);
+void    render_map(t_solong *game);
+int 	assets_load(t_solong *game);
 
 #endif

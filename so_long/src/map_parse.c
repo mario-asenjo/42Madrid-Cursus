@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 19:44:53 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/19 13:37:18 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/23 13:24:33 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ static char	**map_copy(char *filename, int line_count, t_solong *game)
 		if (l_len > 0 && line[l_len - 1] == '\n')
 			line[l_len - 1] = '\0';
 		if (line[0] == '\0' || line[0] == '\n')
-			return (map_free(game), close(fd), NULL);
+			return (map_free(game), close(fd), free(line), NULL);
 		game->map[i] = ft_strdup(line);
 		if (!game->map[i])
-			return (map_free(game), close(fd), NULL);
+			return (map_free(game), close(fd), free(line), NULL);
 		free(line);
 		i++;
 	}
@@ -169,5 +169,6 @@ char	**map_load(char *filename, t_solong *game)
 	game->player_pos.y = 0;
 	if (!map_validate(game))
 		return (0);
+	ft_printf("dentro de map_load: mapa validado!\n");
 	return (game->map);
 }
