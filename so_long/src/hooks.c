@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 18:16:21 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/23 20:01:13 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/23 20:51:05 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,17 @@ int	on_close(t_solong *game)
 
 static void next_move(t_solong *game, int x, int y)
 {
+	char	*submessage;
+	char	*message;
+	
 	if (try_move_player(game, x, y))
 	{
 		render_map(game);
+		submessage = ft_itoa(game->c_moves);
+		message = ft_strjoin("Moves: ", submessage);
+    	mlx_string_put(game->connection, game->window, 20, 50, 0x6622AF, message);
+		free(submessage);
+		free(message);
 	}
 }
 
