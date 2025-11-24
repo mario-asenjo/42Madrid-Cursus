@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 18:16:21 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/23 20:51:05 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/23 21:00:16 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,29 @@ static void next_move(t_solong *game, int x, int y)
 {
 	char	*submessage;
 	char	*message;
+	char	*total_c;
+	char	*subsupermess;
+	char	*supermess;
 	
 	if (try_move_player(game, x, y))
 	{
 		render_map(game);
 		submessage = ft_itoa(game->c_moves);
 		message = ft_strjoin("Moves: ", submessage);
-    	mlx_string_put(game->connection, game->window, 20, 50, 0x6622AF, message);
+    	mlx_string_put(game->connection, game->window, 84, 86, 0x000000, message);
 		free(submessage);
 		free(message);
+		total_c = ft_itoa(game->c_total_coll);
+		submessage = ft_itoa(game->c_collected);
+		message = ft_strjoin("Coins Collected: ", submessage);
+		subsupermess = ft_strjoin(message, "/");
+		supermess = ft_strjoin(subsupermess, total_c);
+    	mlx_string_put(game->connection, game->window, 84, 106, 0x000000, supermess);
+		free(total_c);
+		free(submessage);
+		free(message);
+		free(subsupermess);
+		free(supermess);
 	}
 }
 
