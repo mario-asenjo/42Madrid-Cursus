@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 21:08:50 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/23 14:08:10 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/23 19:53:55 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_solong
 	int			c_moves;
 	int			c_collected;
 	int			c_total_coll;
+	int			game_finished;
 
 	t_position	player_pos;
 	t_position	exit_pos;
@@ -64,6 +65,7 @@ char	*get_next_line(int fd);
 
 int		init_game(t_solong *game_token, int width, int height, char *title);
 void	destroy_game(t_solong *game);
+void	end_game(t_solong *game, int exit_code);
 void	register_hooks(t_solong *game);
 
 char	**map_load(char *filename, t_solong *game);
@@ -75,5 +77,11 @@ void    my_mlx_pixel_put(t_sl_img *data, int x, int y, int color);
 void	destroy_images(t_solong *game);
 void    render_map(t_solong *game);
 int 	assets_load(t_solong *game);
+
+int		is_walkable(t_position pos, t_solong *game);
+int		in_bounds(t_position pos, t_solong *game);
+int		index_of(t_position p, t_solong *game);
+
+int 	try_move_player(t_solong *game, int add_x, int add_y);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 19:44:53 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/23 13:24:33 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/23 20:08:49 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ int	map_validate(t_solong *game)
 				p_flag = 1;
 				game->player_pos.x = col;
 				game->player_pos.y = line; 
+				ft_printf("Playerinital: x: %d, y: %d", col, line);
 			}
 			else if (game->map[line][col] == 'P')
 				return (0);

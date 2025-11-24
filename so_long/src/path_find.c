@@ -6,23 +6,23 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 07:11:48 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/23 13:22:46 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/23 19:52:41 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-static size_t index_of(t_position p, t_solong *game)
+int	index_of(t_position p, t_solong *game)
 {
 	return (size_t)p.y * (size_t)game->m_width + (size_t)p.x;
 }
 
-static int	in_bounds(t_position pos, t_solong *game)
+int	in_bounds(t_position pos, t_solong *game)
 {
 	return (pos.y >= 0 && pos.y < game->m_height && pos.x >= 0 && pos.x < game->m_width);
 }
 
-static int	is_walkable(t_position pos, t_solong *game)
+int	is_walkable(t_position pos, t_solong *game)
 {
 	return (game->map[pos.y][pos.x] != '1');
 }

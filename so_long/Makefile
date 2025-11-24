@@ -6,7 +6,7 @@
 #    By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/11 17:26:56 by masenjo           #+#    #+#              #
-#    Updated: 2025/11/23 14:07:28 by masenjo          ###   ########.fr        #
+#    Updated: 2025/11/23 19:54:26 by masenjo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ SRCS        := \
 	$(SRCDIR)/map_utils.c \
 	$(SRCDIR)/path_find.c \
 	$(SRCDIR)/assets.c \
+	$(SRCDIR)/game_loop.c \
 	$(SRCDIR)/render.c \
 	$(SRCDIR)/destroy.c
 

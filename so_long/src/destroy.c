@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 18:55:03 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/23 13:58:59 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/23 19:46:19 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,10 @@ void	destroy_game(t_solong *game)
 	free(game->connection);
 	game->connection = NULL;
 	map_free(game);
+}
+
+void	end_game(t_solong *game, int exit_code)
+{
+	destroy_game(game);
+	exit(exit_code);
 }

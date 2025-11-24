@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 18:16:21 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/23 14:08:44 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/23 20:01:13 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,30 +22,26 @@ int	on_close(t_solong *game)
 	return (0);
 }
 
+static void next_move(t_solong *game, int x, int y)
+{
+	if (try_move_player(game, x, y))
+	{
+		render_map(game);
+	}
+}
+
 int	on_key(int keycode, t_solong *game)
 {
 	if (is_esc(keycode))
 		on_close(game);
 	else if (is_down(keycode))
-	{
-		game->c_moves++;
-		ft_printf("Vas hacia abajo Count: %d\n", game->c_moves);
-	}
+		next_move(game, 0, 1);
 	else if (is_up(keycode))
-	{
-		game->c_moves++;
-		ft_printf("Vas hacia arrba Count: %d\n", game->c_moves);
-	}
+		next_move(game, 0, -1);
 	else if (is_left(keycode))
-	{
-		game->c_moves++;
-		ft_printf("Vas hacia la izquierda Count: %d\n", game->c_moves);
-	}
+		next_move(game, -1, 0);
 	else if (is_right(keycode))
-	{
-		game->c_moves++;
-		ft_printf("Vas hacia la derecha Count: %d\n", game->c_moves);
-	}
+		next_move(game, 1, 0);
 	return (0);
 }
 
