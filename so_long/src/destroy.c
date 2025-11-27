@@ -41,7 +41,7 @@ void	destroy_images(t_solong *game)
 	}
 }
 
-static void destroy_window(t_solong *game)
+static void	destroy_window(t_solong *game)
 {
 	if (game->window)
 		mlx_destroy_window(game->connection, game->window);

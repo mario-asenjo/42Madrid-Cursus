@@ -52,8 +52,6 @@ size_t	print_token(t_printf_token *token, va_list args)
 	if (token->specifier == 'p')
 		count += print_token_ptr(token, va_arg(args,
 					void *), "0123456789abcdef");
-	if (token->specifier == 'f')
-		count += print_token_float(token, va_arg(args, double));		
 	return (count);
 }
 

@@ -61,6 +61,14 @@ typedef struct s_solong
 	t_sl_img	door;
 }				t_solong;
 
+typedef struct s_map_vals
+{
+	int	line;
+	int	col;
+	int	e_flag;
+	int	p_flag;
+}		t_map_vals;
+
 char	*get_next_line(int fd);
 
 int		init_game(t_solong *game_token, int width, int height, char *title);
@@ -69,19 +77,24 @@ void	end_game(t_solong *game, int exit_code);
 void	register_hooks(t_solong *game);
 
 char	**map_load(char *filename, t_solong *game);
+char	**map_copy(char *filename, int line_count, t_solong *game);
+int		map_validate(t_solong *game);
+int		map_count_lines(char *filename);
+int		map_validate_aux(const t_solong *g);
+int		line_check(char c, t_solong *game, t_map_vals *map_vals);
 void	map_free(t_solong *game);
 int		map_check_extension(char *filename);
-int 	find_path_to_exit_with_all_c(t_solong *game);
+int		find_path_to_exit_with_all_c(t_solong *game);
 
-void    my_mlx_pixel_put(t_sl_img *data, int x, int y, int color);
+void	my_mlx_pixel_put(t_sl_img *data, int x, int y, int color);
 void	destroy_images(t_solong *game);
-void    render_map(t_solong *game);
-int 	assets_load(t_solong *game);
+void	render_map(t_solong *game);
+int		assets_load(t_solong *game);
 
 int		is_walkable(t_position pos, t_solong *game);
 int		in_bounds(t_position pos, t_solong *game);
 int		index_of(t_position p, t_solong *game);
 
-int 	try_move_player(t_solong *game, int add_x, int add_y);
+int		try_move_player(t_solong *game, int add_x, int add_y);
 
 #endif

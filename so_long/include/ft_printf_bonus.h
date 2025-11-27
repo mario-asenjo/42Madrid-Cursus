@@ -94,6 +94,6 @@ size_t	ft_print_number_with_flags(t_printf_token *token,
 			t_printf_data *data);
 size_t	print_token_ptr(t_printf_token *token, void *p,
 			const char *base);
-size_t  print_token_float(t_printf_token *token, double value);
+size_t	print_token_float(t_printf_token *token, double value);
 
 #endif

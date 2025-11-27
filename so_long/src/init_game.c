@@ -12,7 +12,8 @@
 
 #include "../include/so_long.h"
 
-static void init_image_vals(t_sl_img *img) {
+static void	init_image_vals(t_sl_img *img)
+{
 	img->addr = NULL;
 	img->img_ptr = NULL;
 	img->width = 0;
@@ -22,7 +23,8 @@ static void init_image_vals(t_sl_img *img) {
 	img->endian = 0;
 }
 
-static void init_game_image_vals(t_solong *game) {
+static void	init_game_image_vals(t_solong *game)
+{
 	init_image_vals(&game->wall);
 	init_image_vals(&game->floor);
 	init_image_vals(&game->player);
@@ -30,7 +32,8 @@ static void init_game_image_vals(t_solong *game) {
 	init_image_vals(&game->door);
 }
 
-static void init_game_flags(t_solong *game) {
+static void	init_game_flags(t_solong *game)
+{
 	game->c_collected = 0;
 	game->c_moves = 0;
 	game->game_finished = 0;

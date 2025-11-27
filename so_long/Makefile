@@ -46,7 +46,6 @@ SRCS        := \
 	$(SRCDIR)/init_game.c \
 	$(SRCDIR)/utils.c \
 	$(SRCDIR)/keys.c \
-	$(SRCDIR)/mouse.c \
 	$(SRCDIR)/hooks.c \
 	$(SRCDIR)/map_parse.c \
 	$(SRCDIR)/map_utils.c \
