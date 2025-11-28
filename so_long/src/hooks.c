@@ -21,41 +21,10 @@ int	on_close(t_solong *game)
 	return (0);
 }
 
-static void	print_info(t_solong *game)
-{
-	char	*submessage;
-	char	*message;
-	char	*total_c;
-	char	*subsupermess;
-	char	*supermess;
-
-	submessage = ft_itoa(game->c_moves);
-	message = ft_strjoin("Moves: ", submessage);
-	mlx_string_put(game->connection, game->window, 84, 86,
-		0x000000, message);
-	free(submessage);
-	free(message);
-	total_c = ft_itoa(game->c_total_coll);
-	submessage = ft_itoa(game->c_collected);
-	message = ft_strjoin("Coins Collected: ", submessage);
-	subsupermess = ft_strjoin(message, "/");
-	supermess = ft_strjoin(subsupermess, total_c);
-	mlx_string_put(game->connection, game->window, 84, 106,
-		0x000000, supermess);
-	free(total_c);
-	free(submessage);
-	free(message);
-	free(subsupermess);
-	free(supermess);
-}
-
 static void	next_move(t_solong *game, int x, int y)
 {
 	if (try_move_player(game, x, y))
-	{
 		render_map(game);
-		print_info(game);
-	}
 }
 
 int	on_key(int keycode, t_solong *game)

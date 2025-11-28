@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
+/*   By: masenjo <masenjo@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 21:08:50 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/23 19:53:55 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/28 13:13:08 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ typedef struct s_sl_img
 	int		endian;
 }			t_sl_img;
 
+typedef struct s_animation
+{
+	t_sl_img	frames[8];
+	int			count;
+	int			cur;
+	int			ticks;
+	int			ticks_per_frame;
+}				t_animation;
+
 typedef struct s_solong
 {
 	void		*connection;
@@ -59,6 +68,9 @@ typedef struct s_solong
 	t_sl_img	player;
 	t_sl_img	coin;
 	t_sl_img	door;
+
+	t_animation	coin_anim;
+	int			clock_tick;
 }				t_solong;
 
 typedef struct s_map_vals
@@ -90,6 +102,9 @@ void	my_mlx_pixel_put(t_sl_img *data, int x, int y, int color);
 void	destroy_images(t_solong *game);
 void	render_map(t_solong *game);
 int		assets_load(t_solong *game);
+int		load_frames(t_solong *game, t_animation *a);
+void	anim_unload(t_solong *game, t_animation *a);
+
 
 int		is_walkable(t_position pos, t_solong *game);
 int		in_bounds(t_position pos, t_solong *game);

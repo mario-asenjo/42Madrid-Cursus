@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assets.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
+/*   By: masenjo <masenjo@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 13:28:12 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/23 14:42:20 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/28 13:12:43 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	assets_load(t_solong *game)
 	game->floor.img_ptr = mlx_xpm_file_to_image(game->connection, "img/0.xpm",
 			&game->floor.width, &game->floor.height);
 	if (!game->floor.img_ptr)
+		return (destroy_images(game), 0);
+	if (!load_frames(game, &game->coin_anim))
 		return (destroy_images(game), 0);
 	game->coin.img_ptr = mlx_xpm_file_to_image(game->connection, "img/c.xpm",
 			&game->coin.width, &game->coin.height);

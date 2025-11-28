@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
+/*   By: masenjo <masenjo@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 13:29:14 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/23 20:39:15 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/28 12:56:08 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	draw_tile(t_solong *game, char cell, t_position pos)
 {
-	int	px;
-	int	py;
+	int			px;
+	int			py;
 
 	px = pos.x * game->tile;
 	py = pos.y * game->tile;
@@ -25,8 +25,12 @@ static void	draw_tile(t_solong *game, char cell, t_position pos)
 		mlx_put_image_to_window(game->connection, game->window,
 			game->wall.img_ptr, px, py);
 	if (cell == 'C')
+	{
+		if (game->coin_anim.count > 0)
+			game->coin.img_ptr = &game->coin_anim.frames[game->coin_anim.cur];
 		mlx_put_image_to_window(game->connection, game->window,
 			game->coin.img_ptr, px, py);
+	}
 	if (cell == 'P' || (game->player_pos.x == pos.x
 			&& game->player_pos.y == pos.y))
 		mlx_put_image_to_window(game->connection, game->window,
@@ -57,6 +61,34 @@ void	render_rev(t_solong *game)
 	}
 }
 
+static void	print_info(t_solong *game)
+{
+	char	*submessage;
+	char	*message;
+	char	*total_c;
+	char	*subsupermess;
+	char	*supermess;
+
+	submessage = ft_itoa(game->c_moves);
+	message = ft_strjoin("Moves: ", submessage);
+	mlx_string_put(game->connection, game->window, 84, 86,
+		0x000000, message);
+	free(submessage);
+	free(message);
+	total_c = ft_itoa(game->c_total_coll);
+	submessage = ft_itoa(game->c_collected);
+	message = ft_strjoin("Coins Collected: ", submessage);
+	subsupermess = ft_strjoin(message, "/");
+	supermess = ft_strjoin(subsupermess, total_c);
+	mlx_string_put(game->connection, game->window, 84, 106,
+		0x000000, supermess);
+	free(total_c);
+	free(submessage);
+	free(message);
+	free(subsupermess);
+	free(supermess);
+}
+
 void	render_map(t_solong *game)
 {
 	int			y;
@@ -81,4 +113,5 @@ void	render_map(t_solong *game)
 	}
 	else
 		render_rev(game);
+	print_info(game);
 }

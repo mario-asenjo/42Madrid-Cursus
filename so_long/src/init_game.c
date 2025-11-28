@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
+/*   By: masenjo <masenjo@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 21:31:09 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/23 20:20:05 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/28 12:51:10 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void	init_game_flags(t_solong *game)
 {
 	game->c_collected = 0;
 	game->c_moves = 0;
+	game->clock_tick = 0;
 	game->game_finished = 0;
 	init_game_image_vals(game);
 }
