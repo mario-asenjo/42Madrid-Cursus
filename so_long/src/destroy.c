@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenjo <masenjo@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 18:55:03 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/28 13:13:36 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/28 16:28:45 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	destroy_images(t_solong *game)
 {
+	anim_unload(game, &game->coin_anim);
 	if (game->coin.img_ptr)
 	{
 		mlx_destroy_image(game->connection, game->coin.img_ptr);
@@ -39,7 +40,6 @@ void	destroy_images(t_solong *game)
 		mlx_destroy_image(game->connection, game->floor.img_ptr);
 		game->floor.img_ptr = NULL;
 	}
-	anim_unload(game, &game->coin_anim);
 }
 
 static void	destroy_window(t_solong *game)

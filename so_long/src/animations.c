@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenjo <masenjo@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 12:05:59 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/28 20:27:28 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/28 17:43:43 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,37 +31,36 @@ void	anim_unload(t_solong *game, t_animation *a)
 
 int	load_frames(t_solong *game, t_animation *a, char *file)
 {
-	char	*tmp;
-	char	*full;
-	int		frame;
+    char    *full;
+	char	*temp;
+    char    *frame_str;
 
-	a = (t_animation *)(sizeof(t_animation));
-	if (!a)
-		return (0);
-	a->count = 0;
-	while (a->count < 8)
-	{
-		frame = ft_itoa(a->count);
-		if (!frame)
-			return (anim_unload(game, a), 0);
-		tmp = ft_strjoin(file, frame);
-		if (!tmp)
-			return (free(frame), anim_unload(game, a), 0);
-		full = ft_strjoin(file, ".xpm");
+    a->count = 0;
+
+    while (a->count < 8)
+    {
+        frame_str = ft_itoa(a->count);
+        if (!frame_str)
+            return (anim_unload(game, a), 0);
+        temp = ft_strjoin(file, frame_str);
+        if (!temp)
+			return (free(frame_str), anim_unload(game, a), 0);
+		full = ft_strjoin(temp, ".xpm");
 		if (!full)
-			return (free(frame), free(tmp), anim_unload(game, a), 0);
-		a->frames[a->count].img_ptr = mlx_xpm_file_to_image(game->connection, full, &a->frames[a->count].width, &a->frames[a->count].height);
-		if (!a->frames[a->count].img_ptr)
-			return (free(frame), free(file), free(full), anim_unload(game, a), 0);
-		free(frame);
-		free(tmp);
-		free(full);
-		if (a->frames[a->count].width != game->tile || a->frames[a->count].height != game->tile)
-			return (anim_unload(game, a), 0);
-		a->count++;
-	}
-	a->cur = 0;
-	a->ticks = 0;
-	a->ticks_per_frame = 8;
-	return (a->count > 0);
+			return (free(frame_str), anim_unload(game, a), 0);
+        a->frames[a->count].img_ptr = mlx_xpm_file_to_image(game->connection, full, &a->frames[a->count].width, &a->frames[a->count].height);
+        if (!a->frames[a->count].img_ptr)
+        {
+            free(full);
+            return (anim_unload(game, a), 0);
+        }
+		free(frame_str);
+		free(temp);
+        free(full);
+        a->count++;
+    }
+    a->cur = 0;
+    a->ticks = 0;
+    a->ticks_per_frame = 300;
+    return (a->count > 0);
 }

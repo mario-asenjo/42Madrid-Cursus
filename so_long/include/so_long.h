@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenjo <masenjo@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 21:08:50 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/28 13:13:08 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/28 16:24:38 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	my_mlx_pixel_put(t_sl_img *data, int x, int y, int color);
 void	destroy_images(t_solong *game);
 void	render_map(t_solong *game);
 int		assets_load(t_solong *game);
-int		load_frames(t_solong *game, t_animation *a);
+int		load_frames(t_solong *game, t_animation *a, char *file);
 void	anim_unload(t_solong *game, t_animation *a);
 
 

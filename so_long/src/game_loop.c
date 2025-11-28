@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenjo <masenjo@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 19:29:46 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/28 20:28:03 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/28 16:32:26 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,5 @@ int	try_move_player(t_solong *game, int add_x, int add_y)
 	game->c_moves++;
 	mlx_string_put(game->connection, game->window,
 		1 * game->tile, 1 * game->tile, 5, "Moves: ");
-	return (1);
-}
-
-int	on_loop(void *param)
-{
-	t_solong *game = param;
-
-	game->clock_tick++;
-	if (game->clock_tick % game->coin_anim.ticks_per_frame == 0)
-	{
-		game->coin_anim.cur = (game->coin_anim.cur + 1) % game->coin_anim.count;
-		render_map(game);
-	}
 	return (1);
 }

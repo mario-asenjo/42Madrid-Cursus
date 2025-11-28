@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: masenjo <masenjo@student.42madrid.com>     +#+  +:+       +#+         #
+#    By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/11 17:26:56 by masenjo           #+#    #+#              #
-#    Updated: 2025/11/28 12:13:31 by masenjo          ###   ########.fr        #
+#    Updated: 2025/11/28 16:31:51 by masenjo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

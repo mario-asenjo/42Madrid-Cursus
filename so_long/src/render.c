@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenjo <masenjo@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 13:29:14 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/28 12:56:08 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/28 17:36:59 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ static void	draw_tile(t_solong *game, char cell, t_position pos)
 {
 	int			px;
 	int			py;
+	void		*img;
 
 	px = pos.x * game->tile;
 	py = pos.y * game->tile;
+	img = NULL;
 	mlx_put_image_to_window(game->connection, game->window,
 		game->floor.img_ptr, px, py);
 	if (cell == '1')
@@ -27,9 +29,11 @@ static void	draw_tile(t_solong *game, char cell, t_position pos)
 	if (cell == 'C')
 	{
 		if (game->coin_anim.count > 0)
-			game->coin.img_ptr = &game->coin_anim.frames[game->coin_anim.cur];
+			img = game->coin_anim.frames[game->coin_anim.cur].img_ptr;
+		else
+			img = game->coin.img_ptr;
 		mlx_put_image_to_window(game->connection, game->window,
-			game->coin.img_ptr, px, py);
+			img, px, py);
 	}
 	if (cell == 'P' || (game->player_pos.x == pos.x
 			&& game->player_pos.y == pos.y))
@@ -38,27 +42,6 @@ static void	draw_tile(t_solong *game, char cell, t_position pos)
 	if (cell == 'E')
 		mlx_put_image_to_window(game->connection, game->window,
 			game->door.img_ptr, px, py);
-}
-
-void	render_rev(t_solong *game)
-{
-	int			x;
-	int			y;
-	t_position	pos;
-
-	y = game->m_height - 1;
-	while (y >= 0)
-	{
-		x = game->m_width - 1;
-		pos.y = y;
-		while (x >= 0)
-		{
-			pos.x = x;
-			draw_tile(game, game->map[y][x], pos);
-			x--;
-		}
-		y--;
-	}
 }
 
 static void	print_info(t_solong *game)
@@ -95,23 +78,18 @@ void	render_map(t_solong *game)
 	int			x;
 	t_position	pos;
 
-	if (game->player_pos.y > game->exit_pos.y)
+	y = 0;
+	while (y < game->m_height)
 	{
-		y = 0;
-		while (y < game->m_height)
+		x = 0;
+		pos.y = y;
+		while (x < game->m_width)
 		{
-			x = 0;
-			pos.y = y;
-			while (x < game->m_width)
-			{
-				pos.x = x;
-				draw_tile(game, game->map[y][x], pos);
-				x++;
-			}
-			y++;
+			pos.x = x;
+			draw_tile(game, game->map[y][x], pos);
+			x++;
 		}
+		y++;
 	}
-	else
-		render_rev(game);
 	print_info(game);
 }

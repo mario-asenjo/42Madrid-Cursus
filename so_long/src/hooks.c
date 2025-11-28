@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 18:16:21 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/23 21:00:16 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/28 16:53:56 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,22 @@ int	on_key(int keycode, t_solong *game)
 	return (0);
 }
 
+static int	on_loop(void *param)
+{
+	t_solong *game = param;
+
+	game->clock_tick++;
+	if (game->coin_anim.count != 0 && game->clock_tick % game->coin_anim.ticks_per_frame == 0)
+	{
+		game->coin_anim.cur = (game->coin_anim.cur + 1) % game->coin_anim.count;
+		render_map(game);
+	}
+	return (0);
+}
+
 void	register_hooks(t_solong *game)
 {
 	mlx_key_hook(game->window, on_key, game);
 	mlx_hook(game->window, 17, 0, on_close, game);
+	mlx_loop_hook(game->connection, on_loop, game);
 }
