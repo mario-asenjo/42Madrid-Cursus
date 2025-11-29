@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 20:04:45 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/28 18:41:51 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/29 09:07:49 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ static void	load_enemies(t_solong *game)
 			{
 				game->enemies[game->enemy_count].pos.x = j;
 				game->enemies[game->enemy_count].pos.y = i;
-				game->enemies[game->enemy_count].origin = game->enemies[game->enemy_count].pos;
+				game->enemies[game->enemy_count]
+					.origin = game->enemies[game->enemy_count].pos;
 				game->enemies[game->enemy_count].dirx = 1;
 				game->enemy_count++;
 			}

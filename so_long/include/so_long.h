@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 21:08:50 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/28 18:53:41 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/29 09:25:38 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ typedef struct s_enemy
 typedef struct s_routine_info
 {
 	t_position	old_pos;
-    t_position	next;
-    int			nextx;
-    int			move_ok;
+	t_position	next;
+	int			nextx;
+	int			move_ok;
 }				t_routine_info;
 
 typedef struct s_solong
@@ -124,7 +124,6 @@ void	render_map(t_solong *game);
 int		assets_load(t_solong *game);
 int		load_frames(t_solong *game, t_animation *a, char *file);
 void	anim_unload(t_solong *game, t_animation *a);
-
 
 int		is_walkable(t_position pos, t_solong *game);
 int		in_bounds(t_position pos, t_solong *game);

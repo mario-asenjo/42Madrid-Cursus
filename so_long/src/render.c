@@ -6,26 +6,17 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 13:29:14 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/28 18:12:51 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/29 09:24:54 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-static void	draw_tile(t_solong *game, char cell, t_position pos)
+static void	draw_tile_aux(t_solong *game, char cell, int px, int py)
 {
-	int			px;
-	int			py;
-	void		*img;
+	void	*img;
 
-	px = pos.x * game->tile;
-	py = pos.y * game->tile;
 	img = NULL;
-	mlx_put_image_to_window(game->connection, game->window,
-		game->floor.img_ptr, px, py);
-	if (cell == '1')
-		mlx_put_image_to_window(game->connection, game->window,
-			game->wall.img_ptr, px, py);
 	if (cell == 'C')
 	{
 		if (game->coin_anim.count > 0)
@@ -35,6 +26,23 @@ static void	draw_tile(t_solong *game, char cell, t_position pos)
 		mlx_put_image_to_window(game->connection, game->window,
 			img, px, py);
 	}
+	if (cell == 'X')
+		mlx_put_image_to_window(game->connection, game->window,
+			game->enemy_img.img_ptr, px, py);
+}
+
+static void	draw_tile(t_solong *game, char cell, t_position pos)
+{
+	int			px;
+	int			py;
+
+	px = pos.x * game->tile;
+	py = pos.y * game->tile;
+	mlx_put_image_to_window(game->connection, game->window,
+		game->floor.img_ptr, px, py);
+	if (cell == '1')
+		mlx_put_image_to_window(game->connection, game->window,
+			game->wall.img_ptr, px, py);
 	if (cell == 'P' || (game->player_pos.x == pos.x
 			&& game->player_pos.y == pos.y))
 		mlx_put_image_to_window(game->connection, game->window,
@@ -42,9 +50,7 @@ static void	draw_tile(t_solong *game, char cell, t_position pos)
 	if (cell == 'E')
 		mlx_put_image_to_window(game->connection, game->window,
 			game->door.img_ptr, px, py);
-	if (cell == 'X')
-		mlx_put_image_to_window(game->connection, game->window,
-			game->enemy_img.img_ptr, px, py);
+	draw_tile_aux(game, cell, px, py);
 }
 
 static void	print_info(t_solong *game)

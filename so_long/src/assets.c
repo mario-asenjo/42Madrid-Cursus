@@ -6,13 +6,13 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 13:28:12 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/28 18:49:14 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/29 09:20:14 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-int	assets_load(t_solong *game)
+static int	load_individual(t_solong *game)
 {
 	game->wall.img_ptr = mlx_xpm_file_to_image(game->connection, "img/1.xpm",
 			&game->wall.width, &game->wall.height);
@@ -30,16 +30,23 @@ int	assets_load(t_solong *game)
 			&game->door.width, &game->door.height);
 	if (!game->door.img_ptr)
 		return (destroy_images(game), 0);
+	game->enemy_img.img_ptr = mlx_xpm_file_to_image(game->connection,
+			"img/x.xpm", &game->enemy_img.width, &game->enemy_img.height);
+	if (!game->enemy_img.img_ptr)
+		return (destroy_images(game), 0);
+	return (1);
+}
+
+int	assets_load(t_solong *game)
+{
+	if (!load_individual(game))
+		return (0);
 	if (!load_frames(game, &game->coin_anim, "img/c_"))
 	{
-		game->coin.img_ptr = mlx_xpm_file_to_image(game->connection, "img/c.xpm",
-				&game->coin.width, &game->coin.height);
+		game->coin.img_ptr = mlx_xpm_file_to_image(game->connection,
+				"img/c.xpm", &game->coin.width, &game->coin.height);
 		if (!game->coin.img_ptr)
 			return (destroy_images(game), 0);
 	}
-	game->enemy_img.img_ptr = mlx_xpm_file_to_image(game->connection, "img/x.xpm",
-			&game->enemy_img.width, &game->enemy_img.height);
-	if (!game->enemy_img.img_ptr)
-		return (destroy_images(game), 0);
 	return (1);
 }

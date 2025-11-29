@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 18:16:21 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/28 18:37:47 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/29 09:08:41 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,12 @@ int	on_key(int keycode, t_solong *game)
 
 static int	on_loop(void *param)
 {
-	t_solong *game = param;
+	t_solong	*game;
 
+	game = param;
 	game->clock_tick++;
-	if (game->coin_anim.count != 0 && game->clock_tick % game->coin_anim.ticks_per_frame == 0)
+	if (game->coin_anim.count != 0 && game->clock_tick
+		% game->coin_anim.ticks_per_frame == 0)
 	{
 		game->coin_anim.cur = (game->coin_anim.cur + 1) % game->coin_anim.count;
 		render_map(game);
