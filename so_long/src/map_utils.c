@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 20:04:45 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/19 13:28:16 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/28 18:41:51 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,32 @@ void	map_free(t_solong *game)
 	game->m_width = 0;
 }
 
+static void	load_enemies(t_solong *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	game->enemy_count = 0;
+	while (i < game->m_height)
+	{
+		j = 0;
+		while (j < game->m_width)
+		{
+			if (game->map[i][j] == 'X' && game->enemy_count < MAX_ENEMIES)
+			{
+				game->enemies[game->enemy_count].pos.x = j;
+				game->enemies[game->enemy_count].pos.y = i;
+				game->enemies[game->enemy_count].origin = game->enemies[game->enemy_count].pos;
+				game->enemies[game->enemy_count].dirx = 1;
+				game->enemy_count++;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
 char	**map_load(char *filename, t_solong *game)
 {
 	int		line_count;
@@ -63,7 +89,7 @@ char	**map_load(char *filename, t_solong *game)
 	game->player_pos.y = 0;
 	if (!map_validate(game))
 		return (0);
-	ft_printf("dentro de map_load: mapa validado!\n");
+	load_enemies(game);
 	return (game->map);
 }
 

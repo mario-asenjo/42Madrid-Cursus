@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 13:29:14 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/28 17:36:59 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/28 18:12:51 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ static void	draw_tile(t_solong *game, char cell, t_position pos)
 	if (cell == 'E')
 		mlx_put_image_to_window(game->connection, game->window,
 			game->door.img_ptr, px, py);
+	if (cell == 'X')
+		mlx_put_image_to_window(game->connection, game->window,
+			game->enemy_img.img_ptr, px, py);
 }
 
 static void	print_info(t_solong *game)

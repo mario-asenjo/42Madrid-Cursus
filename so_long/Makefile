@@ -6,7 +6,7 @@
 #    By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/11 17:26:56 by masenjo           #+#    #+#              #
-#    Updated: 2025/11/28 16:31:51 by masenjo          ###   ########.fr        #
+#    Updated: 2025/11/28 19:01:45 by masenjo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,18 +34,11 @@ SRCS        := \
 	$(SRCDIR)/game_loop.c \
 	$(SRCDIR)/animations.c \
 	$(SRCDIR)/render.c \
+	$(SRCDIR)/enemy.c \
 	$(SRCDIR)/destroy.c
 
-BONUS_SRCS  := \
-	# $(SRCDIR)/enemy_bonus.c \
-	# $(SRCDIR)/anim_bonus.c
 
-# With BONUS=1 bonus are added to build
-ifeq ($(BONUS),1)
-	ALL_SRCS := $(SRCS) $(BONUS_SRCS)
-else
-	ALL_SRCS := $(SRCS)
-endif
+ALL_SRCS := $(SRCS)
 
 OBJS        := $(ALL_SRCS:.c=.o)
 
@@ -66,13 +59,13 @@ $(SRCDIR)/%.o: $(SRCDIR)/%.c
 
 # Lbrary contstructon
 $(LIBFT_A):
-	$(MAKE) bonus -C $(LIBFT_DIR)
+	$(MAKE) -C $(LIBFT_DIR)
 
 $(PRINTF_A):
-	$(MAKE) bonus -C $(PRINTF_DIR)
+	$(MAKE) -C $(PRINTF_DIR)
 
 $(GNL_A):
-	$(MAKE) bonus -C $(GNL_DIR)
+	$(MAKE) -C $(GNL_DIR)
 
 # Cleaning
 clean:
@@ -88,7 +81,3 @@ fclean: clean
 	$(MAKE) -C $(GNL_DIR) fclean
 
 re: fclean all
-
-# Compile with bonus uses same rule as name rule and falls in ifeq statement
-bonus:
-	$(MAKE) BONUS=1

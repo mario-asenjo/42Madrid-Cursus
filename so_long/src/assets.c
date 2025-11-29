@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 13:28:12 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/28 17:07:17 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/28 18:49:14 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ int	assets_load(t_solong *game)
 		if (!game->coin.img_ptr)
 			return (destroy_images(game), 0);
 	}
-	ft_printf("coin_anim.count=%d\n", game->coin_anim.count);
-	for (int i = 0; i < game->coin_anim.count; ++i)
-    	ft_printf("frame[%d]=%p\n", i, game->coin_anim.frames[i].img_ptr);
+	game->enemy_img.img_ptr = mlx_xpm_file_to_image(game->connection, "img/x.xpm",
+			&game->enemy_img.width, &game->enemy_img.height);
+	if (!game->enemy_img.img_ptr)
+		return (destroy_images(game), 0);
 	return (1);
 }

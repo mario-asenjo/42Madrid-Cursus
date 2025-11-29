@@ -6,12 +6,13 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 21:08:50 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/28 16:24:38 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/28 18:53:41 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+# define MAX_ENEMIES 24
 # include <stdio.h>
 # include <fcntl.h>
 # include <stdlib.h>
@@ -45,6 +46,21 @@ typedef struct s_animation
 	int			ticks_per_frame;
 }				t_animation;
 
+typedef struct s_enemy
+{
+	t_position	pos;
+	t_position	origin;
+	int			dirx;
+}				t_enemy;
+
+typedef struct s_routine_info
+{
+	t_position	old_pos;
+    t_position	next;
+    int			nextx;
+    int			move_ok;
+}				t_routine_info;
+
 typedef struct s_solong
 {
 	void		*connection;
@@ -66,11 +82,14 @@ typedef struct s_solong
 	t_sl_img	wall;
 	t_sl_img	floor;
 	t_sl_img	player;
-	t_sl_img	coin;
 	t_sl_img	door;
-
+	t_sl_img	enemy_img;
+	t_sl_img	coin;
 	t_animation	coin_anim;
 	int			clock_tick;
+
+	t_enemy		enemies[MAX_ENEMIES];
+	int			enemy_count;
 }				t_solong;
 
 typedef struct s_map_vals
@@ -82,6 +101,7 @@ typedef struct s_map_vals
 }		t_map_vals;
 
 char	*get_next_line(int fd);
+int		ft_iscinstr(const char *str, char c);
 
 int		init_game(t_solong *game_token, int width, int height, char *title);
 void	destroy_game(t_solong *game);
@@ -111,5 +131,6 @@ int		in_bounds(t_position pos, t_solong *game);
 int		index_of(t_position p, t_solong *game);
 
 int		try_move_player(t_solong *game, int add_x, int add_y);
+void	enemy_step(t_solong *g);
 
 #endif

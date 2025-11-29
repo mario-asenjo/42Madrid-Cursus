@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 19:44:53 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/23 20:08:49 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/28 18:02:54 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	map_validate_aux(const t_solong *g)
 
 int	line_check(char c, t_solong *game, t_map_vals *map_vals)
 {
-	if (!ft_iscinstr("01CEP", c))
+	if (!ft_iscinstr("01CEPX", c))
 		return (0);
 	if (c == 'C')
 		game->c_total_coll++;
