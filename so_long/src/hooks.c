@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 18:16:21 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/29 09:08:41 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/11/29 09:58:26 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ int	on_close(t_solong *game)
 static void	next_move(t_solong *game, int x, int y)
 {
 	if (try_move_player(game, x, y))
-	{
-		enemy_step(game);
 		render_map(game);
-	}
 }
 
 int	on_key(int keycode, t_solong *game)
@@ -57,6 +54,8 @@ static int	on_loop(void *param)
 		game->coin_anim.cur = (game->coin_anim.cur + 1) % game->coin_anim.count;
 		render_map(game);
 	}
+	if (game->clock_tick % 2500 == 0)
+		enemy_step(game);
 	return (0);
 }
 
