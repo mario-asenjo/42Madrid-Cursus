@@ -6,9 +6,16 @@
 #    By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/11 17:26:56 by masenjo           #+#    #+#              #
-#    Updated: 2025/11/28 19:01:45 by masenjo          ###   ########.fr        #
+#    Updated: 2025/11/29 04:32:15 by masenjo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+MAKEFLAGS	= --silent
+
+GREEN = \033[0;32m
+YELLOW = \033[0;33m
+RED = \033[0;31m
+NC = \033[0m
 
 NAME        := so_long
 CC          := cc
@@ -48,14 +55,18 @@ GNL_A       := $(GNL_DIR)/libgnl.a
 
 .PHONY: all clean fclean re bonus
 
-all: $(NAME)
+all:	$(NAME)
+		@printf "\033[2K\r"
+		@printf "$(GREEN)Compiled so_long -> $(NAME)$(NC)\n"
 
 $(NAME): $(OBJS) $(LIBFT_A) $(PRINTF_A) $(GNL_A) $(MLX_LIB)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) $(PRINTF_A) $(GNL_A) $(MLX_LIB) $(SYS_LIBS) -o $(NAME)
 
 # Proyect objeccts
 $(SRCDIR)/%.o: $(SRCDIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@ && \
+	printf "\033[2K\r"
+	@printf "$(GREEN)Compiling: $(NC)$<"
 
 # Lbrary contstructon
 $(LIBFT_A):
@@ -70,14 +81,18 @@ $(GNL_A):
 # Cleaning
 clean:
 	rm -f $(OBJS)
-	$(MAKE) -C $(LIBFT_DIR) clean
-	$(MAKE) -C $(PRINTF_DIR) clean
-	$(MAKE) -C $(GNL_DIR) clean
+	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(MAKE) -C $(PRINTF_DIR) fclean
+	$(MAKE) -C $(GNL_DIR) fclean
+	@printf "$(YELLOW)DELETED OBJECTS -> Libraries $(NC)\n"
+	@printf "$(YELLOW)DELETED OBJECTS -> so_long $(NC)\n"
 
 fclean: clean
 	rm -f $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(MAKE) -C $(PRINTF_DIR) fclean
 	$(MAKE) -C $(GNL_DIR) fclean
+	@printf "$(RED)DELETED FULL PROYECT -> so_long $(NC)\n"
 
-re: fclean all
+re::	fclean
+re::	all
