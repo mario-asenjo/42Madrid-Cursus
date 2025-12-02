@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ops_rev_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/29 11:45:22 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/02 16:56:54 by root             ###   ########.fr       */
+/*   Created: 2025/12/02 16:37:41 by root              #+#    #+#             */
+/*   Updated: 2025/12/02 16:38:49 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-static int	ft_isspace(char c)
+void    rra(t_stack *a)
 {
-	if (c == ' ' || (c >= 9 && c <= 13))
-		return (1);
-	return (0);
+    op_rev_rotate(a);
+    write(1, "rra\n", 4);
 }
 
-int	ft_atoi(const char *nptr)
+void    rrb(t_stack *b)
 {
-	int	sign;
-	int	ret;
+    op_rev_rotate(b);
+    write(1, "rrb\n", 4);
+}
 
-	sign = 1;
-	ret = 0;
-	while (ft_isspace(*nptr))
-		nptr++;
-	if (*nptr == '-' || *nptr == '+')
-	{
-		if (*nptr == '-')
-			sign *= -1;
-		nptr++;
-	}
-	while (*nptr >= '0' && *nptr <= '9')
-		ret = ret * 10 + (*nptr++ - '0');
-	return (ret * sign);
+void    rrr(t_stack *a, t_stack *b)
+{
+    op_rev_rotate(a);
+    op_rev_rotate(b);
+    write(1, "rrr\n", 4);
 }

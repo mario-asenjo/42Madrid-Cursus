@@ -1,40 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ops_push.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/29 11:45:22 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/02 16:56:54 by root             ###   ########.fr       */
+/*   Created: 2025/12/02 16:26:34 by root              #+#    #+#             */
+/*   Updated: 2025/12/02 16:27:36 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-static int	ft_isspace(char c)
+void    pa(t_stack *a, t_stack *b)
 {
-	if (c == ' ' || (c >= 9 && c <= 13))
-		return (1);
-	return (0);
+    op_push(b, a);
+    write(1, "pa\n", 3);
 }
 
-int	ft_atoi(const char *nptr)
+void    pb(t_stack *a, t_stack *b)
 {
-	int	sign;
-	int	ret;
-
-	sign = 1;
-	ret = 0;
-	while (ft_isspace(*nptr))
-		nptr++;
-	if (*nptr == '-' || *nptr == '+')
-	{
-		if (*nptr == '-')
-			sign *= -1;
-		nptr++;
-	}
-	while (*nptr >= '0' && *nptr <= '9')
-		ret = ret * 10 + (*nptr++ - '0');
-	return (ret * sign);
+    op_push(a, b);
+    write(1, "pb\n", 3);
 }

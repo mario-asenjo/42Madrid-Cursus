@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 20:37:18 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/02 15:50:31 by root             ###   ########.fr       */
+/*   Updated: 2025/12/02 18:46:03 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define PUSH_SWAP_H
 # include "../libft/libft.h"
 # include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
 
 /**
  * Each node from the stack
@@ -30,7 +32,7 @@ typedef struct s_node
 }					t_node;
 
 /**
- * Estructura de abstracción de stack
+ * Abstraction of stack using t_node
  * top -> hill of stack
  * bottom -> bottom of stack
  * size -> number of elements
@@ -44,9 +46,8 @@ typedef struct s_stack
 	char	name;
 }			t_stack;
 
-
 /**
- * STACK INTIALIZATION AND CLEAR FUNCS
+ * STACK INTIALIZATION AND CLEARING FUNCS
  * stack_init.c
  */
 
@@ -64,6 +65,11 @@ void    stack_init(t_stack *stack, char name);
  *  			  default values.
  */
 void    stack_clear(t_stack *stack);
+/**
+ * stack_is_sorted -> Returns 1 if stack is NULL, sized < 2 or 
+ * 					  when stack is sorted.
+*/
+int stack_is_sorted(t_stack *stack);
 
 /**
  * GENERIC OPERATIONS IN STACK
@@ -71,7 +77,8 @@ void    stack_clear(t_stack *stack);
 */
 
 /**
- * stack_push_top -> adds node on top of stack both sent as parameters.
+ * stack_push_top -> adds node on top of stack both sent as 
+ * 					 parameters.
 */
 void    stack_push_top(t_stack *stack, t_node *node);
 /**
@@ -79,7 +86,8 @@ void    stack_push_top(t_stack *stack, t_node *node);
 */
 t_node  *stack_pop_top(t_stack *stack);
 /**
- * stack_push_bottom -> adds node to bottom of stack both sent as parameters.
+ * stack_push_bottom -> adds node to bottom of stack both sent
+ * 					    as parameters.
 */
 void    stack_push_bottom(t_stack *stack, t_node *node);
 
@@ -89,7 +97,8 @@ void    stack_push_bottom(t_stack *stack, t_node *node);
 */
 
 /**
- * op_swap -> if size >= 2 swaps first two nodes of stack sent as parameter.
+ * op_swap -> if size >= 2 swaps first two nodes of stack sent
+ * 			  as parameter.
 */
 void    op_swap(t_stack *stack);
 /**
@@ -97,12 +106,94 @@ void    op_swap(t_stack *stack);
 */
 void    op_push(t_stack *from, t_stack *to);
 /**
- * op_rotate -> pushes the top node to the bottom of the stack sent as parameter.
+ * op_rotate -> pushes the top node to the bottom of the stack sent as
+ * 				parameter.
 */
 void    op_rotate(t_stack *stack);
 /**
- * op_rev_rotate -> pushes the bottom node to the top of the stack sent as parameter.
+ * op_rev_rotate -> pushes the bottom node to the top of the stack sent
+ * 					as parameter.
 */
 void    op_rev_rotate(t_stack *stack);
+
+/**
+ * SWAP OPERATIONS
+ * ops_swap.c
+*/
+
+/**
+ * sa -> calls op_swap on a sent as parameter, then prints 'sa'
+*/
+void    sa(t_stack *a);
+/**
+ * sb -> calls op_swap on b sent as parameter, then prints 'sb'
+*/
+void    sb(t_stack *b);
+/**
+ * ss -> calls op_swap on a and b both sent as parameters, then prints 'ss'
+*/
+void    ss(t_stack *a, t_stack *b);
+
+/**
+ * PUSH OPERATIONS
+ * ops_psuh.c
+*/
+
+/**
+ * pa -> calls op_push from b to a both sent as parameters, then prints 'pa'
+*/
+void    pa(t_stack *a, t_stack *b);
+/**
+ * pb -> calls op_push from a to b both sent as parameters, then prints 'pb'
+*/
+void    pb(t_stack *a, t_stack *b);
+
+/**
+ * ROTATE OPERATIONS
+ * ops_rotate.c
+*/
+
+/**
+ * ra -> calls op_rotate on a sent as parameter, then prints 'ra'
+*/
+void    ra(t_stack *a);
+/**
+ * rb -> calls op_rotate on b sent as parameter, then prints 'rb'
+*/
+void    rb(t_stack *b);
+/**
+ * rr -> calls op_rotate on a and b both sent as parameters, then prints 'rr'
+*/
+void    rr(t_stack *a, t_stack *b);
+
+/**
+ * REVERSE ROTATE OPERATIONS
+ * ops_rev_rotate.c
+*/
+
+/**
+ * rra -> calls op_rev_rotate on a sent as parameter, then prints 'rra'
+*/
+void    rra(t_stack *a);
+/**
+ * rrb -> calls op_rev_rotate on b sent as parameter, then prints 'rrb'
+*/
+void    rrb(t_stack *b);
+/**
+ * rrr -> calls op_rev_rotate on a and b both sent as parameters,
+ * 		  then prints 'rrr'
+*/
+void    rrr(t_stack *a, t_stack *b);
+
+/**
+ * PARSING ARGUMENTS AND CREATING STACK
+ * parse_args.c
+*/
+
+/**
+ * parse_args-> parses numbers in argv to a stack recieved as parameter
+*/
+int parse_args(int argc, char **argv, t_stack *a);
+
 
 #endif

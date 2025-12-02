@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 20:55:12 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/02 16:16:54 by root             ###   ########.fr       */
+/*   Updated: 2025/12/02 16:44:00 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int main(void)
         printf("%d\n", curr->value);
         curr = curr->next;
     }
+    sa(&a);
+    rra(&a);
     stack_clear(&a);
     return (0);
 }

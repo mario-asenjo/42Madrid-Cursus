@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 15:12:49 by root              #+#    #+#             */
-/*   Updated: 2025/12/02 15:31:06 by root             ###   ########.fr       */
+/*   Updated: 2025/12/02 17:31:29 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,20 @@ void    stack_push_bottom(t_stack *stack, t_node *node)
     if (stack->top == NULL)
         stack->top = node;
     stack->size++;
+}
+
+int stack_is_sorted(t_stack *stack)
+{
+    t_node  *current;
+
+    if (!stack || stack->size < 2)
+        return (1);
+    current = stack->top;
+    while (current->next)
+    {
+        if (current->value > current->next->value)
+            return (0);
+        current = current->next;
+    }
+    return (1);
 }
