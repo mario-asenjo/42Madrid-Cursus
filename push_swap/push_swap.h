@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenjo <masenjo@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 20:37:18 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/02 20:55:02 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/02 15:50:31 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,44 @@ void    stack_init(t_stack *stack, char name);
  */
 void    stack_clear(t_stack *stack);
 
+/**
+ * GENERIC OPERATIONS IN STACK
+ * stack_basic_ops.c
+*/
 
+/**
+ * stack_push_top -> adds node on top of stack both sent as parameters.
+*/
+void    stack_push_top(t_stack *stack, t_node *node);
+/**
+ * stack_pop_top -> pops top node of stack sent as parameter.
+*/
+t_node  *stack_pop_top(t_stack *stack);
+/**
+ * stack_push_bottom -> adds node to bottom of stack both sent as parameters.
+*/
+void    stack_push_bottom(t_stack *stack, t_node *node);
+
+/**
+ * SWAP GENERIC FUNTIONS ON STACKS
+ * stack_swap_generic.c
+*/
+
+/**
+ * op_swap -> if size >= 2 swaps first two nodes of stack sent as parameter.
+*/
+void    op_swap(t_stack *stack);
+/**
+ * op_push -> moves top from "from" to "to" stacks sent as parameters.
+*/
+void    op_push(t_stack *from, t_stack *to);
+/**
+ * op_rotate -> pushes the top node to the bottom of the stack sent as parameter.
+*/
+void    op_rotate(t_stack *stack);
+/**
+ * op_rev_rotate -> pushes the bottom node to the top of the stack sent as parameter.
+*/
+void    op_rev_rotate(t_stack *stack);
 
 #endif
