@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 20:37:18 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/02 18:46:03 by root             ###   ########.fr       */
+/*   Updated: 2025/12/02 19:17:30 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void    ss(t_stack *a, t_stack *b);
 
 /**
  * PUSH OPERATIONS
- * ops_psuh.c
+ * ops_push.c
 */
 
 /**
@@ -193,7 +193,31 @@ void    rrr(t_stack *a, t_stack *b);
 /**
  * parse_args-> parses numbers in argv to a stack recieved as parameter
 */
-int parse_args(int argc, char **argv, t_stack *a);
+int		parse_args(int argc, char **argv, t_stack *a);
 
+/**
+ * EXIT HANDLERS
+ * exit.c
+*/
+
+/**
+ * exit_code -> For closing stacks sent as parameters and exiting with
+ * 				exit code.
+*/
+void    exit_code(t_stack *a, t_stack *b, int code);
+
+/**
+ * SORTING ALGORITHMS
+ * sort_small.c / sort_big.c
+*/
+
+/**
+ * sort_five -> Sorts stack a using stacks a and b, when a->size <= 5.
+*/
+void	sort_five(t_stack *a, t_stack *b);
+/**
+ * sort_big -> Sorts stack a using stacks a and b when a->size > 5.
+*/
+void	sort_big(t_stack *a, t_stack *b);
 
 #endif

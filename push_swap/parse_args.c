@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 16:52:48 by root              #+#    #+#             */
-/*   Updated: 2025/12/02 18:44:21 by root             ###   ########.fr       */
+/*   Updated: 2025/12/02 19:08:41 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static int  is_valid_num(const char *nptr)
     {
         if (!ft_isdigit((unsigned char)nptr[i]))
             return (0);
+        i++;
     }
     return (1);
 }
@@ -49,8 +50,9 @@ static int  convert_str_to_int(const char *str, int *num)
 static void free_splitted(char **splitted)
 {
     int i;
-    int j;
 
+    if (!splitted)
+        return ;
     i = 0;
     while (splitted[i])
     {
@@ -99,12 +101,12 @@ int parse_args(int argc, char **argv, t_stack *a)
         while (splitted[j])
         {
             if (!convert_str_to_int(splitted[j], &value))
-                return (free_splitted(splitted[j]), 0);
+                return (free_splitted(splitted), 0);
             node = new_node(value);
             if (!node)
-                return (free_splitted(splitted[j]), 0);
+                return (free_splitted(splitted), 0);
             stack_push_bottom(a, node);
-                    j++;
+            j++;
         }
         free_splitted(splitted);
         i++;
