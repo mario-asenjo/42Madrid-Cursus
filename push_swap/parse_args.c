@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 16:52:48 by root              #+#    #+#             */
-/*   Updated: 2025/12/02 19:08:41 by root             ###   ########.fr       */
+/*   Updated: 2025/12/03 16:16:56 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ int parse_args(int argc, char **argv, t_stack *a)
         free_splitted(splitted);
         i++;
     }
+    if (!a->top)
+        return (0);
     if (has_duplicate_numbers(a))
         return (0);
     return (1);

@@ -30,7 +30,8 @@ SRC			=	push_swap.c \
 				ops_rev_rotate.c \
 				sort_small.c \
 				sort_utils.c \
-				sort_big.c
+				sort_big.c \
+				indexing.c
 
 OBJ			=	$(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 19:18:26 by root              #+#    #+#             */
-/*   Updated: 2025/12/03 12:20:54 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/03 13:16:31 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static void	sort_three(t_stack *a)
 	else if (first > second && second > third)
 	{
 		sa(a);
-
 		rra(a);
 	}
 	else if (first > second && second < third && first > third)

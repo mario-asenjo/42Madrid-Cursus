@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 18:55:16 by root              #+#    #+#             */
-/*   Updated: 2025/12/03 11:44:15 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/03 16:13:52 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main(int argc, char **argv)
     t_stack b;
 
     if (argc < 2)
-        return (0);
+        exit_code(NULL, NULL, EXIT_FAILURE);
     if (!parse_args(argc, argv, &a))
         exit_code(&a, NULL, EXIT_FAILURE);
     stack_init(&b, 'b');

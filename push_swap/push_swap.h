@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 20:37:18 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/03 12:23:48 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/03 15:01:30 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,5 +230,9 @@ void	sort_five(t_stack *a, t_stack *b);
  * sort_big -> Sorts stack a using stacks a and b when a->size > 5.
 */
 void	sort_big(t_stack *a, t_stack *b);
+
+/*POR DOCUMENTAR*/
+int		index_stack(t_stack *stack);
+int		stack_get_index_max_position(t_stack *stack);
 
 #endif
