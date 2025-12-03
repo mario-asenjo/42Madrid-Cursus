@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 20:37:18 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/02 19:17:30 by root             ###   ########.fr       */
+/*   Updated: 2025/12/03 12:23:48 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include "../libft/libft.h"
+# include "libft/libft.h"
+# include "ft_printf/ft_printf_bonus.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
@@ -70,6 +71,16 @@ void    stack_clear(t_stack *stack);
  * 					  when stack is sorted.
 */
 int stack_is_sorted(t_stack *stack);
+
+/**
+ * UTILS OF THE STACK (GET LOWEST VALUE'S POSITION, )
+ * sort_utils.c
+*/
+
+/**
+ * stack_get_min_position -> Retrieves position of lowest value node in stack.
+*/
+int	stack_get_min_position(t_stack *stack);
 
 /**
  * GENERIC OPERATIONS IN STACK

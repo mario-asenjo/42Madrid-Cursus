@@ -1,0 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_strutils.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: masenjo <masenjo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/10 20:48:38 by masenjo           #+#    #+#             */
+/*   Updated: 2025/10/27 18:45:31 by masenjo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+
+int	ft_print_count_char(char c)
+{
+	return (write(1, &c, 1));
+}
+
+int	ft_print_count_str(char *str)
+{
+	size_t	i;
+
+	if (!str)
+		return (write(1, "(null)", 6));
+	i = 0;
+	while (str[i])
+		i++;
+	write(1, str, i);
+	return (i);
+}

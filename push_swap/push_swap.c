@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 18:55:16 by root              #+#    #+#             */
-/*   Updated: 2025/12/02 19:18:09 by root             ###   ########.fr       */
+/*   Updated: 2025/12/03 11:44:15 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static  sort_stack(t_stack *a, t_stack *b)
+static void sort_stack(t_stack *a, t_stack *b)
 {
     if (a->size == 2)
         sa(a);
@@ -33,7 +33,7 @@ int main(int argc, char **argv)
         exit_code(&a, NULL, EXIT_FAILURE);
     stack_init(&b, 'b');
     if (stack_is_sorted(&a))
-        exit_code(&a, &b, 0);
+        exit_code(&a, &b, EXIT_SUCCESS);
     sort_stack(&a, &b);
     exit_code(&a, &b, EXIT_SUCCESS);
 }
