@@ -1,0 +1,105 @@
+2.3. Preparar la defensa
+
+Aquí ya jugamos a ganar puntos y no sólo a aprobar. Cosas que deberías poder explicar fluido:
+
+a) Estructuras de datos
+
+Por qué usas una lista doblemente enlazada (next + prev) en lugar de array:
+
+Rotaciones y rev-rotations son O(1) usando top/bottom.
+
+op_rotate → extraes top, lo pusheas a bottom.
+
+op_rev_rotate → extraes bottom, lo pusheas a top.
+
+Abstracción de t_stack:
+
+top, bottom, size, name.
+
+Esto te permite usar la misma lógica para a y b.
+
+b) Capas de operaciones
+
+Capas separadas:
+
+stack_* → operaciones estructurales “puras” (no imprimen nada).
+
+op_* → operaciones genéricas tipo “del lenguaje push_swap” pero todavía sin escribir.
+
+sa/sb/pa/pb/... → envuelven op_* + escriben ra\n, etc.
+
+Ventajas:
+
+Puedes testear la lógica de stack sin generar salida.
+
+Código legible y claro para la defensa.
+
+c) Casos pequeños
+
+Ser capaz de explicar:
+
+sort_three:
+
+Qué patrones reconoces (2 1 3, 3 2 1, 3 1 2, 1 3 2, 2 3 1).
+
+Qué haces en cada caso (hasta máximo 2 operaciones).
+
+sort_five:
+
+Idea:
+
+Mientras a->size > 3, buscas el mínimo (stack_get_min_position) y lo empujas a B con las mínimas rotaciones posibles (ra o rra).
+
+Ordenas 3 en A (sort_three).
+
+Devuelves los de B a A con pa.
+
+Complejidad: O(n²), pero para n ≤ 5 es irrelevante.
+
+d) Casos grandes (sort_big)
+
+Aquí es donde ganas la partida si lo cuentas bien:
+
+Indexación:
+
+Explicas que asignas index 0..n-1 según el orden creciente de value.
+
+Esto te permite trabajar siempre con valores acotados (y evitar pensar en números enormes).
+
+Idea de chunks:
+
+Los índices pequeños se empujan primero a B, en bloques (chunk_size).
+
+Al empujar:
+
+Si el índice es muy pequeño (<= range), haces pb + rb → lo mandas al fondo de B.
+
+Si está dentro del bloque (<= range + chunk_size), haces solo pb.
+
+Si no toca aún, ra en A.
+
+range va creciendo, “descubriendo” trozos cada vez mayores del rango 0..n-1.
+
+Fase B → A:
+
+Siempre buscas el índice máximo en B (stack_get_index_max_position).
+
+Rotas B (rb o rrb) hasta tenerlo arriba.
+
+Lo empujas a A con pa.
+
+Repetido hasta vaciar B → A queda ordenada ascendentemente.
+
+Complejidad aproximada:
+
+Indexación: O(n²) (por bubble sort + búsqueda), pero con n ≤ 500, despreciable.
+
+Fase de chunks: cada elemento se mira y rota unas pocas veces → algo cercano a O(n * factor).
+
+Fase de máximos: repetimos n veces:
+
+buscar max O(n),
+
+rotar B medio tamaño de media.
+
+A nivel intuitivo: O(n²), pero con límites de operaciones buenos para n = 100 y 500.
