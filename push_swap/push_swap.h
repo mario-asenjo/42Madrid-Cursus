@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 20:37:18 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/06 09:38:21 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/06 13:51:13 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,22 @@ typedef struct s_stack
 /**
  * new_node -> returns a new node with value sent as parameter.
  */
-t_node  *new_node(int value);
- /**
-  * stack_init -> initializes stack given as parameter with name
-  * 			  given as parameter.
-  */
-void    stack_init(t_stack *stack, char name);
+t_node	*new_node(int value);
+/**
+ * stack_init -> initializes stack given as parameter with name
+ * 			  given as parameter.
+ */
+void	stack_init(t_stack *stack, char name);
 /**
  * stack_clear -> clears from top, till last node, then sets
  *  			  default values.
  */
-void    stack_clear(t_stack *stack);
+void	stack_clear(t_stack *stack);
 /**
  * stack_is_sorted -> Returns 1 if stack is NULL, sized < 2 or 
  * 					  when stack is sorted.
 */
-int stack_is_sorted(t_stack *stack);
+int		stack_is_sorted(t_stack *stack);
 
 /**
  * UTILS OF THE STACK (GET LOWEST VALUE'S POSITION, )
@@ -84,7 +84,7 @@ int stack_is_sorted(t_stack *stack);
 /**
  * stack_get_min_position -> Retrieves position of lowest value node in stack.
 */
-int	stack_get_min_position(t_stack *stack);
+int		stack_get_min_position(t_stack *stack);
 
 /**
  * GENERIC OPERATIONS IN STACK
@@ -95,16 +95,16 @@ int	stack_get_min_position(t_stack *stack);
  * stack_push_top -> adds node on top of stack both sent as 
  * 					 parameters.
 */
-void    stack_push_top(t_stack *stack, t_node *node);
+void	stack_push_top(t_stack *stack, t_node *node);
 /**
  * stack_pop_top -> pops top node of stack sent as parameter.
 */
-t_node  *stack_pop_top(t_stack *stack);
+t_node	*stack_pop_top(t_stack *stack);
 /**
  * stack_push_bottom -> adds node to bottom of stack both sent
  * 					    as parameters.
 */
-void    stack_push_bottom(t_stack *stack, t_node *node);
+void	stack_push_bottom(t_stack *stack, t_node *node);
 
 /**
  * SWAP GENERIC FUNTIONS ON STACKS
@@ -115,21 +115,21 @@ void    stack_push_bottom(t_stack *stack, t_node *node);
  * op_swap -> if size >= 2 swaps first two nodes of stack sent
  * 			  as parameter.
 */
-void    op_swap(t_stack *stack);
+void	op_swap(t_stack *stack);
 /**
  * op_push -> moves top from "from" to "to" stacks sent as parameters.
 */
-void    op_push(t_stack *from, t_stack *to);
+void	op_push(t_stack *from, t_stack *to);
 /**
  * op_rotate -> pushes the top node to the bottom of the stack sent as
  * 				parameter.
 */
-void    op_rotate(t_stack *stack);
+void	op_rotate(t_stack *stack);
 /**
  * op_rev_rotate -> pushes the bottom node to the top of the stack sent
  * 					as parameter.
 */
-void    op_rev_rotate(t_stack *stack);
+void	op_rev_rotate(t_stack *stack);
 
 /**
  * SWAP OPERATIONS
@@ -139,15 +139,15 @@ void    op_rev_rotate(t_stack *stack);
 /**
  * sa -> calls op_swap on a sent as parameter, then prints 'sa'
 */
-void    sa(t_stack *a);
+void	sa(t_stack *a);
 /**
  * sb -> calls op_swap on b sent as parameter, then prints 'sb'
 */
-void    sb(t_stack *b);
+void	sb(t_stack *b);
 /**
  * ss -> calls op_swap on a and b both sent as parameters, then prints 'ss'
 */
-void    ss(t_stack *a, t_stack *b);
+void	ss(t_stack *a, t_stack *b);
 
 /**
  * PUSH OPERATIONS
@@ -157,11 +157,11 @@ void    ss(t_stack *a, t_stack *b);
 /**
  * pa -> calls op_push from b to a both sent as parameters, then prints 'pa'
 */
-void    pa(t_stack *a, t_stack *b);
+void	pa(t_stack *a, t_stack *b);
 /**
  * pb -> calls op_push from a to b both sent as parameters, then prints 'pb'
 */
-void    pb(t_stack *a, t_stack *b);
+void	pb(t_stack *a, t_stack *b);
 
 /**
  * ROTATE OPERATIONS
@@ -171,15 +171,15 @@ void    pb(t_stack *a, t_stack *b);
 /**
  * ra -> calls op_rotate on a sent as parameter, then prints 'ra'
 */
-void    ra(t_stack *a);
+void	ra(t_stack *a);
 /**
  * rb -> calls op_rotate on b sent as parameter, then prints 'rb'
 */
-void    rb(t_stack *b);
+void	rb(t_stack *b);
 /**
  * rr -> calls op_rotate on a and b both sent as parameters, then prints 'rr'
 */
-void    rr(t_stack *a, t_stack *b);
+void	rr(t_stack *a, t_stack *b);
 
 /**
  * REVERSE ROTATE OPERATIONS
@@ -189,16 +189,16 @@ void    rr(t_stack *a, t_stack *b);
 /**
  * rra -> calls op_rev_rotate on a sent as parameter, then prints 'rra'
 */
-void    rra(t_stack *a);
+void	rra(t_stack *a);
 /**
  * rrb -> calls op_rev_rotate on b sent as parameter, then prints 'rrb'
 */
-void    rrb(t_stack *b);
+void	rrb(t_stack *b);
 /**
  * rrr -> calls op_rev_rotate on a and b both sent as parameters,
  * 		  then prints 'rrr'
 */
-void    rrr(t_stack *a, t_stack *b);
+void	rrr(t_stack *a, t_stack *b);
 
 /**
  * PARSING ARGUMENTS AND CREATING STACK
@@ -219,7 +219,7 @@ int		parse_args(int argc, char **argv, t_stack *a);
  * exit_code -> For closing stacks sent as parameters and exiting with
  * 				exit code.
 */
-void    exit_code(t_stack *a, t_stack *b, int code);
+void	exit_code(t_stack *a, t_stack *b, int code);
 
 /**
  * SORTING ALGORITHMS
