@@ -6,12 +6,16 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 20:37:18 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/03 15:01:30 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/06 09:38:21 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+# define ERROR_ARGS 0
+# define ERROR_PARSING 1
+# define ERROR_SORTING 2
+# define ALREADY_SORED 3
 # include "libft/libft.h"
 # include "ft_printf/ft_printf_bonus.h"
 # include <stdlib.h>
