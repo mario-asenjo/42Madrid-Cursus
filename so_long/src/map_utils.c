@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 20:04:45 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/29 09:07:49 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/06 11:15:25 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	map_free(t_solong *game)
 	game->m_height = 0;
 	game->m_width = 0;
 }
-
+#ifdef BONUS
 static void	load_enemies(t_solong *game)
 {
 	int	i;
@@ -69,6 +69,7 @@ static void	load_enemies(t_solong *game)
 		i++;
 	}
 }
+#endif
 
 char	**map_load(char *filename, t_solong *game)
 {

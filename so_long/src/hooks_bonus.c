@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.c                                            :+:      :+:    :+:   */
+/*   hooks_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 18:16:21 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/06 11:25:20 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/06 11:22:36 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifdef BONUS
 #include "../include/so_long.h"
 #include "../include/keys.h"
-
-int	on_close(t_solong *game)
-{
-	ft_printf("We're closing the game, bye!.\n");
-	destroy_game(game);
-	exit(0);
-}
 
 static void	next_move(t_solong *game, int x, int y)
 {
 	if (try_move_player(game, x, y))
-	{
 		render_map(game);
-		ft_printf("Moves: %d\n", game->c_moves);
-	}	
 }
 
 int	on_key(int keycode, t_solong *game)
@@ -44,8 +35,27 @@ int	on_key(int keycode, t_solong *game)
 	return (0);
 }
 
+static int	on_loop(void *param)
+{
+	t_solong	*game;
+
+	game = param;
+	game->clock_tick++;
+	if (game->coin_anim.count != 0 && game->clock_tick
+		% game->coin_anim.ticks_per_frame == 0)
+	{
+		game->coin_anim.cur = (game->coin_anim.cur + 1) % game->coin_anim.count;
+		render_map(game);
+	}
+	if (game->clock_tick % 2500 == 0)
+		enemy_step(game);
+	return (0);
+}
+
 void	register_hooks(t_solong *game)
 {
 	mlx_key_hook(game->window, on_key, game);
 	mlx_hook(game->window, 17, 0, on_close, game);
+	mlx_loop_hook(game->connection, on_loop, game);
 }
+#endif

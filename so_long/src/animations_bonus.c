@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   animations.c                                       :+:      :+:    :+:   */
+/*   animations_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 12:05:59 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/29 09:21:22 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/06 11:10:28 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifdef BONUS
 #include "../include/so_long.h"
-
 void	anim_unload(t_solong *game, t_animation *a)
 {
 	int	i;
@@ -72,3 +72,4 @@ int	load_frames(t_solong *game, t_animation *a, char *file)
 	a->ticks_per_frame = 300;
 	return (a->count > 0);
 }
+#endif

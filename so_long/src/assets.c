@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 13:28:12 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/29 09:20:14 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/06 11:13:12 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,28 @@
 
 static int	load_individual(t_solong *game)
 {
-	game->wall.img_ptr = mlx_xpm_file_to_image(game->connection, "img/1.xpm",
+	game->wall.img_ptr = mlx_xpm_file_to_image(game->connection, "textures/1.xpm",
 			&game->wall.width, &game->wall.height);
 	if (!game->wall.img_ptr)
 		return (destroy_images(game), 0);
-	game->floor.img_ptr = mlx_xpm_file_to_image(game->connection, "img/0.xpm",
+	game->floor.img_ptr = mlx_xpm_file_to_image(game->connection, "textures/0.xpm",
 			&game->floor.width, &game->floor.height);
 	if (!game->floor.img_ptr)
 		return (destroy_images(game), 0);
-	game->player.img_ptr = mlx_xpm_file_to_image(game->connection, "img/p.xpm",
+	game->player.img_ptr = mlx_xpm_file_to_image(game->connection, "textures/p.xpm",
 			&game->player.width, &game->player.height);
 	if (!game->player.img_ptr)
 		return (destroy_images(game), 0);
-	game->door.img_ptr = mlx_xpm_file_to_image(game->connection, "img/e.xpm",
+	game->door.img_ptr = mlx_xpm_file_to_image(game->connection, "textures/e.xpm",
 			&game->door.width, &game->door.height);
 	if (!game->door.img_ptr)
 		return (destroy_images(game), 0);
+	#ifdef BONUS
 	game->enemy_img.img_ptr = mlx_xpm_file_to_image(game->connection,
 			"img/x.xpm", &game->enemy_img.width, &game->enemy_img.height);
 	if (!game->enemy_img.img_ptr)
 		return (destroy_images(game), 0);
+	#endif
 	return (1);
 }
 
@@ -41,12 +43,19 @@ int	assets_load(t_solong *game)
 {
 	if (!load_individual(game))
 		return (0);
-	if (!load_frames(game, &game->coin_anim, "img/c_"))
+	#ifdef BONUS
+	if (!load_frames(game, &game->coin_anim, "textures/c_"))
 	{
 		game->coin.img_ptr = mlx_xpm_file_to_image(game->connection,
-				"img/c.xpm", &game->coin.width, &game->coin.height);
+				"textures/c.xpm", &game->coin.width, &game->coin.height);
 		if (!game->coin.img_ptr)
 			return (destroy_images(game), 0);
 	}
+	#else
+	game->coin.img_ptr = mlx_xpm_file_to_image(game->connection,
+			"textures/c.xpm", &game->coin.width, &game->coin.height);
+	if (!game->coin.img_ptr)
+		return (destroy_images(game), 0);
+	#endif
 	return (1);
 }

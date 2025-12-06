@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 21:31:09 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/28 16:53:35 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/06 11:14:56 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ static void	init_game_flags(t_solong *game)
 {
 	game->c_collected = 0;
 	game->c_moves = 0;
+	#ifdef BONUS
 	game->clock_tick = 0;
+	game->enemy_count = 0;
+	#endif BONUS
 	game->game_finished = 0;
 	init_game_image_vals(game);
 }
