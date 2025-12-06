@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_utils.c                                        :+:      :+:    :+:   */
+/*   map_utils_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 20:04:45 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/06 12:57:40 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/06 13:07:57 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#ifdef BONUS
+# include "../include/so_long.h"
 
 int	map_check_extension(char *filename)
 {
@@ -43,6 +44,33 @@ void	map_free(t_solong *game)
 	game->m_width = 0;
 }
 
+static void	load_enemies(t_solong *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	game->enemy_count = 0;
+	while (i < game->m_height)
+	{
+		j = 0;
+		while (j < game->m_width)
+		{
+			if (game->map[i][j] == 'X' && game->enemy_count < MAX_ENEMIES)
+			{
+				game->enemies[game->enemy_count].pos.x = j;
+				game->enemies[game->enemy_count].pos.y = i;
+				game->enemies[game->enemy_count]
+					.origin = game->enemies[game->enemy_count].pos;
+				game->enemies[game->enemy_count].dirx = 1;
+				game->enemy_count++;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
 char	**map_load(char *filename, t_solong *game)
 {
 	int		line_count;
@@ -63,6 +91,7 @@ char	**map_load(char *filename, t_solong *game)
 	game->player_pos.y = 0;
 	if (!map_validate(game))
 		return (0);
+	load_enemies(game);
 	return (game->map);
 }
 
@@ -93,3 +122,5 @@ int	map_validate(t_solong *game)
 		return (0);
 	return (map_vals.e_flag && map_vals.p_flag && game->c_total_coll > 0);
 }
+
+#endif

@@ -6,12 +6,12 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 18:25:06 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/06 11:16:44 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/06 13:07:28 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifdef BONUS
-#include "../include/so_long.h"
+# include "../include/so_long.h"
 
 static int	can_step_to(t_solong *game, t_position next, int allow_player_hit)
 {
@@ -33,7 +33,7 @@ static void	check_collision(t_solong *game, t_enemy *enemy,
 		t_routine_info *rinfo)
 {
 	if (rinfo->next.x == game->player_pos.x
-			&& rinfo->next.y == game->player_pos.y)
+		&& rinfo->next.y == game->player_pos.y)
 	{
 		ft_printf("You have been eaten!!! GAME OVER :(( .\n");
 		end_game(game, 1);
@@ -92,4 +92,4 @@ void	enemy_step(t_solong *game)
 		start_routine(game, &i);
 }
 
-#endif
+#endif	

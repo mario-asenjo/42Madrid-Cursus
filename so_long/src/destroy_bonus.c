@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy.c                                          :+:      :+:    :+:   */
+/*   destroy_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 18:55:03 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/06 12:55:04 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/06 13:08:26 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#ifdef BONUS
+# include "../include/so_long.h"
 
 static void	destroy_img_aux(t_solong *game)
 {
@@ -24,10 +25,16 @@ static void	destroy_img_aux(t_solong *game)
 		mlx_destroy_image(game->connection, game->floor.img_ptr);
 		game->floor.img_ptr = NULL;
 	}
+	if (game->enemy_img.img_ptr)
+	{
+		mlx_destroy_image(game->connection, game->enemy_img.img_ptr);
+		game->enemy_img.img_ptr = NULL;
+	}
 }
 
 void	destroy_images(t_solong *game)
 {
+	anim_unload(game, &game->coin_anim);
 	if (game->coin.img_ptr)
 	{
 		mlx_destroy_image(game->connection, game->coin.img_ptr);
@@ -67,3 +74,5 @@ void	end_game(t_solong *game, int exit_code)
 	destroy_game(game);
 	exit(exit_code);
 }
+
+#endif

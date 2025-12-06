@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 18:16:21 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/06 11:25:20 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/06 13:08:46 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	on_close(t_solong *game)
 	ft_printf("We're closing the game, bye!.\n");
 	destroy_game(game);
 	exit(0);
+	return (0);
 }
 
 static void	next_move(t_solong *game, int x, int y)
@@ -26,7 +27,7 @@ static void	next_move(t_solong *game, int x, int y)
 	{
 		render_map(game);
 		ft_printf("Moves: %d\n", game->c_moves);
-	}	
+	}
 }
 
 int	on_key(int keycode, t_solong *game)

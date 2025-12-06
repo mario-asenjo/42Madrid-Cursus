@@ -6,7 +6,7 @@
 #    By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/11 17:26:56 by masenjo           #+#    #+#              #
-#    Updated: 2025/12/06 11:08:43 by masenjo          ###   ########.fr        #
+#    Updated: 2025/12/06 13:01:41 by masenjo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,20 +30,25 @@ SYS_LIBS    = -lXext -lX11 -lm -lz
 
 SRCS        = \
 	$(SRCDIR)/main.c \
-	$(SRCDIR)/init_game.c \
 	$(SRCDIR)/utils.c \
 	$(SRCDIR)/keys.c \
 	$(SRCDIR)/map_parse.c \
-	$(SRCDIR)/map_utils.c \
+	$(SRCDIR)/game_loop.c \
 	$(SRCDIR)/path_find.c \
-	$(SRCDIR)/assets.c \
-	$(SRCDIR)/destroy.c
 
 BASE_SRCS	= \
+	$(SRCDIR)/assets.c \
+	$(SRCDIR)/destroy.c \
+	$(SRCDIR)/init_game.c \
+	$(SRCDIR)/map_utils.c \
 	$(SRCDIR)/hooks.c \
 	$(SRCDIR)/render.c
 
 BONUS_SRCS	= \
+	$(SRCDIR)/assets_bonus.c \
+	$(SRCDIR)/destroy_bonus.c \
+	$(SRCDIR)/init_game_bonus.c \
+	$(SRCDIR)/map_utils_bonus.c \
 	$(SRCDIR)/hooks_bonus.c \
 	$(SRCDIR)/render_bonus.c \
 	$(SRCDIR)/animations_bonus.c \
@@ -98,10 +103,16 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f $(SRCDIR)/*.o
 	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(MAKE) -C $(PRINTF_DIR) fclean
 	$(MAKE) -C $(GNL_DIR) fclean
 	@printf "$(RED)DELETED FULL PROYECT -> so_long $(NC)\n"
+
+# bonus
+bonus:
+	$(MAKE) fclean
+	$(MAKE) BONUS=1 all
 
 re::	fclean
 re::	all

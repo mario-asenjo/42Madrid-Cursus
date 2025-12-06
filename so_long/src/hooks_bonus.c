@@ -6,13 +6,21 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 18:16:21 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/06 11:22:36 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/06 13:04:28 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifdef BONUS
-#include "../include/so_long.h"
-#include "../include/keys.h"
+# include "../include/so_long.h"
+# include "../include/keys.h"
+
+int	on_close(t_solong *game)
+{
+	ft_printf("We're closing the game, bye!.\n");
+	destroy_game(game);
+	exit(0);
+	return (0);
+}
 
 static void	next_move(t_solong *game, int x, int y)
 {
@@ -48,7 +56,10 @@ static int	on_loop(void *param)
 		render_map(game);
 	}
 	if (game->clock_tick % 2500 == 0)
+	{
 		enemy_step(game);
+		render_map(game);
+	}
 	return (0);
 }
 

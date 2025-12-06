@@ -6,12 +6,13 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 12:05:59 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/06 11:10:28 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/06 13:08:12 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifdef BONUS
-#include "../include/so_long.h"
+# include "../include/so_long.h"
+
 void	anim_unload(t_solong *game, t_animation *a)
 {
 	int	i;
@@ -29,7 +30,7 @@ void	anim_unload(t_solong *game, t_animation *a)
 	a->ticks = 0;
 }
 
-static int	load(t_solong *game, t_animation *a, char *file)
+static int	load(t_solong *game, t_animation *a, const char *file)
 {
 	char	*full;
 	char	*temp;
@@ -58,7 +59,7 @@ static int	load(t_solong *game, t_animation *a, char *file)
 	return (1);
 }
 
-int	load_frames(t_solong *game, t_animation *a, char *file)
+int	load_frames(t_solong *game, t_animation *a, const char *file)
 {
 	a->count = 0;
 	while (a->count < 8)

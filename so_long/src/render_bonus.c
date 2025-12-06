@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 13:29:14 by masenjo           #+#    #+#             */
-/*   Updated: 2025/11/29 09:24:54 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/06 13:05:48 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#ifdef BONUS
+# include "../include/so_long.h"
 
 static void	draw_tile_aux(t_solong *game, char cell, int px, int py)
 {
@@ -102,3 +103,4 @@ void	render_map(t_solong *game)
 	}
 	print_info(game);
 }
+#endif

@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                        :+:      :+:    :+:   */
+/*   init_game_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 21:31:09 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/06 12:56:21 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/06 13:05:58 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#ifdef BONUS
+# include "../include/so_long.h"
 
 static void	init_image_vals(t_sl_img *img)
 {
@@ -36,6 +37,7 @@ static void	init_game_flags(t_solong *game)
 {
 	game->c_collected = 0;
 	game->c_moves = 0;
+	game->clock_tick = 0;
 	game->game_finished = 0;
 	init_game_image_vals(game);
 }
@@ -55,3 +57,5 @@ int	init_game(t_solong *game, int width, int height, char *title)
 	init_game_flags(game);
 	return (OK);
 }
+
+#endif
