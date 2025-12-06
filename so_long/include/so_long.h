@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 21:08:50 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/06 13:14:01 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/06 13:26:33 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,27 +55,27 @@ typedef struct s_sl_img
 
 typedef struct s_animation
 {
-	t_sl_img    frames[ANIM_COIN_FRAMES];
-	int         count;
-	int         cur;
-	int         ticks;
-	int         ticks_per_frame;
-} t_animation;
+	t_sl_img	frames[ANIM_COIN_FRAMES];
+	int			count;
+	int			cur;
+	int			ticks;
+	int			ticks_per_frame;
+}				t_animation;
 
 typedef struct s_enemy
 {
-	t_position  pos;
-	t_position  origin;
-	int         dirx;
-} t_enemy;
+	t_position	pos;
+	t_position	origin;
+	int			dirx;
+}				t_enemy;
 
 typedef struct s_routine_info
 {
-	t_position  old_pos;
-	t_position  next;
-	int         nextx;
-	int         move_ok;
-} t_routine_info;
+	t_position	old_pos;
+	t_position	next;
+	int			nextx;
+	int			move_ok;
+}				t_routine_info;
 
 /* --- Bonus State (bonus part) --- */
 typedef struct s_solong
@@ -137,8 +137,6 @@ typedef struct s_solong
 }				t_solong;
 # endif
 /* -------------------------------------------- */
-
-
 
 /* common prototypes (mandatory) */
 char	*get_next_line(int fd);
