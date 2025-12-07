@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+         #
+#    By: masenjo <masenjo@student.42madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/11 17:26:56 by masenjo           #+#    #+#              #
-#    Updated: 2025/12/06 13:01:41 by masenjo          ###   ########.fr        #
+#    Updated: 2025/12/07 14:05:52 by masenjo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NC = \033[0m
 
 NAME        = so_long
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -fsanitize=address,undefined -Iinclude -g3
+CFLAGS      = -Wall -Wextra -Werror -fsanitize=address,undefined -Iinclude -g3 -O0
 
 SRCDIR      = src
 LIBFT_DIR   = lib/libft
