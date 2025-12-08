@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 11:08:04 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/08 09:34:54 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/08 10:10:54 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int	main(int argc, char **argv)
 	}
 	efectuate_operations(&a, &b, operations);
 	ft_lststr_clear(&operations);
-	if (stack_is_sorted(&a))
+	if (stack_is_sorted(&a) && b.size)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
