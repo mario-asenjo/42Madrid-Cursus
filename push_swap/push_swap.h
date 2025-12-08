@@ -6,16 +6,16 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 20:37:18 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/06 13:51:13 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/08 07:13:25 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# define ERROR_ARGS 0
-# define ERROR_PARSING 1
-# define ERROR_SORTING 2
-# define ALREADY_SORED 3
+# define ERROR_ARGS 5
+# define ERROR_PARSING 2
+# define ERROR_SORTING 3
+# define ALREADY_SORED 4
 # include "libft/libft.h"
 # include "ft_printf/ft_printf_bonus.h"
 # include <stdlib.h>
@@ -209,6 +209,11 @@ void	rrr(t_stack *a, t_stack *b);
  * parse_args-> parses numbers in argv to a stack recieved as parameter
 */
 int		parse_args(int argc, char **argv, t_stack *a);
+
+/**
+ * Safely deletes parsed arguments in splitted array
+*/
+void	free_splitted(char **splitted);
 
 /**
  * EXIT HANDLERS

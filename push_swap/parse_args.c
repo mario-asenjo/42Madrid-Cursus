@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 16:52:48 by root              #+#    #+#             */
-/*   Updated: 2025/12/06 13:49:29 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/08 07:01:24 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,6 @@ static int	convert_str_to_int(const char *str, int *num)
 	return (1);
 }
 
-static void	free_splitted(char **splitted)
-{
-	int	i;
-
-	if (!splitted)
-		return ;
-	i = 0;
-	while (splitted[i])
-	{
-		free(splitted[i]);
-		i++;
-	}
-	free(splitted);
-}
-
 static int	has_duplicate_numbers(t_stack *stack)
 {
 	t_node	*out;
@@ -82,13 +67,30 @@ static int	has_duplicate_numbers(t_stack *stack)
 	return (0);
 }
 
+int	convert_and_insert(t_stack *a, char **splitted)
+{
+	int		j;
+	int		value;
+	t_node	*node;
+
+	j = 0;
+	while (splitted[j])
+	{
+		if (!convert_str_to_int(splitted[j], &value))
+			return (0);
+		node = new_node(value);
+		if (!node)
+			return (0);
+		stack_push_bottom(a, node);
+		j++;
+	}
+	return (1);
+}
+
 int	parse_args(int argc, char **argv, t_stack *a)
 {
 	char	**splitted;
 	int		i;
-	int		j;
-	int		value;
-	t_node	*node;
 
 	stack_init(a, 'a');
 	i = 1 ;
@@ -97,17 +99,8 @@ int	parse_args(int argc, char **argv, t_stack *a)
 		splitted = ft_split(argv[i], ' ');
 		if (!splitted)
 			return (0);
-		j = 0;
-		while (splitted[j])
-		{
-			if (!convert_str_to_int(splitted[j], &value))
-				return (free_splitted(splitted), 0);
-			node = new_node(value);
-			if (!node)
-				return (free_splitted(splitted), 0);
-			stack_push_bottom(a, node);
-			j++;
-		}
+		if (!convert_and_insert(a, splitted))
+			return (free_splitted(splitted), 0);
 		free_splitted(splitted);
 		i++;
 	}

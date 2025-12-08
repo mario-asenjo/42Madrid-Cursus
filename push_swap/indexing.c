@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:53:24 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/06 13:53:28 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/08 07:02:16 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static void	insertion(int *arr, t_node *curr, int n)
 static void	indexing(int *arr, t_node *curr, int n)
 {
 	int	i;
-	int	j;
 
 	while (curr)
 	{
@@ -70,8 +69,6 @@ static void	indexing(int *arr, t_node *curr, int n)
 int	index_stack(t_stack *stack)
 {
 	int		n;
-	int		i;
-	int		j;
 	int		*arr;
 	t_node	*curr;
 

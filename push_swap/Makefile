@@ -23,6 +23,7 @@ SRC			=	push_swap.c \
 				stack_basic_ops.c \
 				stack_swap_generic.c \
 				parse_args.c \
+				parse_args_utils.c \
 				exit.c \
 				ops_swap.c \
 				ops_push.c \

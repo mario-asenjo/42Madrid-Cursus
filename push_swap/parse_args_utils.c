@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_checker_bonus.c                          :+:      :+:    :+:   */
+/*   parse_args_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/05 11:08:04 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/08 07:15:46 by masenjo          ###   ########.fr       */
+/*   Created: 2025/12/08 06:55:46 by masenjo           #+#    #+#             */
+/*   Updated: 2025/12/08 06:56:20 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	free_splitted(char **splitted)
 {
-	t_stack	*a;
-	t_stack	*b;
+	int	i;
 
-	if (argc < 2)
-		exit_code(NULL, NULL, EXIT_FAILURE);
-	if (!parse_args(argc, argv, &a))
-		exit_code(&a, NULL, EXIT_FAILURE);
-	stack_init(&b, 'b');
-	return (0);
+	if (!splitted)
+		return ;
+	i = 0;
+	while (splitted[i])
+	{
+		free(splitted[i]);
+		i++;
+	}
+	free(splitted);
 }
