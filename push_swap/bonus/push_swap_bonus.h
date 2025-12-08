@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_checker_bonus.c                          :+:      :+:    :+:   */
+/*   push_swap_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/05 11:08:04 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/08 07:15:46 by masenjo          ###   ########.fr       */
+/*   Created: 2025/12/08 07:28:01 by masenjo           #+#    #+#             */
+/*   Updated: 2025/12/08 07:38:39 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef PUSH_SWAP_BONUS_H
+# define PUSH_SWAP_BONUS_H
 
-int	main(int argc, char **argv)
-{
-	t_stack	*a;
-	t_stack	*b;
+# define OPS_INIT_ERROR 6
+# define STDIN_READ_ERROR 7
 
-	if (argc < 2)
-		exit_code(NULL, NULL, EXIT_FAILURE);
-	if (!parse_args(argc, argv, &a))
-		exit_code(&a, NULL, EXIT_FAILURE);
-	stack_init(&b, 'b');
-	return (0);
-}
+# include "gnl/get_next_line_bonus.h"
+
+#endif

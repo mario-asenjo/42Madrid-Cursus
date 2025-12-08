@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/02 18:53:58 by root              #+#    #+#             */
-/*   Updated: 2025/12/08 08:35:58 by masenjo          ###   ########.fr       */
+/*   Created: 2025/12/08 09:20:46 by masenjo           #+#    #+#             */
+/*   Updated: 2025/12/08 09:20:58 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include "bonus/push_swap_bonus.h"
-
-void	exit_code(t_stack *a, t_stack *b, int code)
+int	ft_strcmp(char *s1, char *s2)
 {
-	if (a)
-		stack_clear(a);
-	if (b)
-		stack_clear(b);
-	if (code == ERROR_ARGS || code == ERROR_PARSING
-		|| code == STDIN_READ_ERROR)
-		write(2, "Error\n", 6);
-	exit(code);
+	int	c;
+
+	c = 0;
+	while (s1[c] != '\0' || s2[c] != '\0')
+	{
+		if (s1[c] < s2[c])
+			return ((c + 1) * -1);
+		if (s1[c] > s2[c])
+			return (c + 1);
+		c++;
+	}
+	return (0);
 }
