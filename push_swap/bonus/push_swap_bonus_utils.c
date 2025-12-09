@@ -1,16 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_checker_bonus.c                          :+:      :+:    :+:   */
+/*   push_swap_bonus_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/05 11:08:04 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/09 06:24:31 by masenjo          ###   ########.fr       */
+/*   Created: 2025/12/09 06:48:33 by masenjo           #+#    #+#             */
+/*   Updated: 2025/12/09 06:54:25 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
 #include "push_swap_bonus.h"
 
 static int	is_string(char *line)
@@ -64,7 +63,29 @@ static int	read_standard_input(t_list_gnl **ops)
 	return (1);
 }
 
-static void	efectuate_operations(t_stack *a, t_stack *b, t_list_gnl *ops)
+static void	rot_operations(t_stack *a, t_stack *b, t_list_gnl *ops)
+{
+	if (ft_strcmp(ops->content, "ra") == 0)
+		op_rotate(a);
+	else if (ft_strcmp(ops->content, "rb") == 0)
+		op_rotate(b);
+	else if (ft_strcmp(ops->content, "rr") == 0)
+	{
+		op_rotate(a);
+		op_rotate(b);
+	}
+	else if (ft_strcmp(ops->content, "rra") == 0)
+		op_rev_rotate(a);
+	else if (ft_strcmp(ops->content, "rrb") == 0)
+		op_rev_rotate(b);
+	else if (ft_strcmp(ops->content, "rrr") == 0)
+	{
+		op_rev_rotate(a);
+		op_rev_rotate(b);
+	}
+}
+
+void	efectuate_operations(t_stack *a, t_stack *b, t_list_gnl *ops)
 {
 	while (ops)
 	{
@@ -81,62 +102,7 @@ static void	efectuate_operations(t_stack *a, t_stack *b, t_list_gnl *ops)
 			op_push(b, a);
 		else if (ft_strcmp(ops->content, "pb") == 0)
 			op_push(a, b);
-		else if (ft_strcmp(ops->content, "ra") == 0)
-			op_rotate(a);
-		else if (ft_strcmp(ops->content, "rb") == 0)
-			op_rotate(b);
-		else if (ft_strcmp(ops->content, "rr") == 0)
-		{
-			op_rotate(a);
-			op_rotate(b);
-		}
-		else if (ft_strcmp(ops->content, "rra") == 0)
-			op_rev_rotate(a);
-		else if (ft_strcmp(ops->content, "rrb") == 0)
-			op_rev_rotate(b);
-		else if (ft_strcmp(ops->content, "rrr") == 0)
-		{
-			op_rev_rotate(a);
-			op_rev_rotate(b);
-		}
+		rot_operations(a, b, ops);
 		ops = ops->next;
 	}
-}
-
-void ft_print_stack_from_top(t_stack *stack)
-{
-	t_node *curr;
-
-	curr = stack->top;
-	while (curr)
-	{
-		printf("%d.\n", curr->value);
-		curr = curr->next;
-	}
-}
-
-int	main(int argc, char **argv)
-{
-	t_stack		a;
-	t_stack		b;
-	t_list_gnl	*operations;
-
-	if (argc < 2)
-		return (0);
-	if (!parse_args(argc, argv, &a))
-		exit_code(&a, NULL, ERROR_PARSING);
-	stack_init(&b, 'b');
-	operations = NULL;
-	if (!read_standard_input(&operations))
-	{
-		ft_lststr_clear(&operations);
-		exit_code(&a, &b, STDIN_READ_ERROR);
-	}
-	efectuate_operations(&a, &b, operations);
-	ft_lststr_clear(&operations);
-	if (stack_is_sorted(&a) && b.size == 0)
-		write(1, "OK\n", 3);
-	else
-		write(1, "KO\n", 3);
-	return (0);
 }

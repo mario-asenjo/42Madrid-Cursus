@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 20:26:01 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/08 08:24:25 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/09 06:53:53 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,10 @@ void	finish_reset(t_list_gnl **list, char *buff)
 */
 void	reset_list_for_next_call(t_list_gnl **list)
 {
-	char	*buff;
+	char		*buff;
 	t_list_gnl	*last_node;
-	size_t	i;
-	size_t	j;
+	size_t		i;
+	size_t		j;
 
 	if (!list || !*list)
 		return ;
@@ -138,7 +138,7 @@ void	reset_list_for_next_call(t_list_gnl **list)
 char	*get_next_line(int fd)
 {
 	static t_list_gnl	*stash[FD_MAX];
-	char			*ret_line;
+	char				*ret_line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);

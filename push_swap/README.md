@@ -66,7 +66,7 @@ Examples:
 
 The program prints one operation per line (`sa`, `pb`, `ra`, etc.).
 
-**checker_masenjo** (bonus)
+**checker** (bonus)
 
 ```bash
 ./checker <numbers...>
@@ -88,15 +88,14 @@ The checker prints `OK` if stack **a** is sorted and stack **b** is empty, or `K
 Some useful references related to the project:
 
 - 42 subject PDF for `push_swap`.
-- `man` pages: `man 3 malloc`, `man 3 free`, `man 3 write`, `man 3 atoi`.
-- Basic data structures and algorithms: stacks, linked lists, and sorting (any standard C / algorithms reference).
+- Libraries developed by myself during the process of 42Common-Core in C language.
+- Basic data structures and algorithms research.
 
 ### Use of AI
 
 AI was used as a support tool to:
 
-- Discuss architecture and design choices (stack abstraction, separation of operations).
 - Refine the chosen sorting strategy for large inputs.
 - Help review edge cases, errors, and documentation wording.
 
-All code was written, integrated, and debugged by the author, with AI used only as guidance and for clarification of concepts.
+All code was written, integrated, and debugged by myself, with AI used only as guidance and for concept clarification.

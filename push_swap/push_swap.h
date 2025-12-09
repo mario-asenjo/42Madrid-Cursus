@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 20:37:18 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/08 07:13:25 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/09 07:07:31 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,12 @@ int		stack_is_sorted(t_stack *stack);
  * stack_get_min_position -> Retrieves position of lowest value node in stack.
 */
 int		stack_get_min_position(t_stack *stack);
+
+/**
+ * stack_get_index_max_position -> Retrieves index from highest positition in
+ * stack.
+ */
+int		stack_get_index_max_position(t_stack *stack);
 
 /**
  * GENERIC OPERATIONS IN STACK
@@ -239,9 +245,10 @@ void	sort_five(t_stack *a, t_stack *b);
  * sort_big -> Sorts stack a using stacks a and b when a->size > 5.
 */
 void	sort_big(t_stack *a, t_stack *b);
-
-/*POR DOCUMENTAR*/
+/**
+ * indexing -> Index the stack, in ascending order, so the lowest value,
+ * gets the lowest index.
+ */
 int		index_stack(t_stack *stack);
-int		stack_get_index_max_position(t_stack *stack);
 
 #endif

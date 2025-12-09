@@ -6,14 +6,14 @@
 #    By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/08 09:08:04 by masenjo           #+#    #+#              #
-#    Updated: 2025/12/08 09:08:05 by masenjo          ###   ########.fr        #
+#    Updated: 2025/12/09 07:08:18 by masenjo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	push_swap
 
 CC			=	cc
-CFLAGS 		=	-Wall -Wextra -Werror -g3
+CFLAGS 		=	-Wall -Wextra -Werror
 
 MAKEFLAGS	=	--silent
 
@@ -48,9 +48,10 @@ SRC			=	push_swap.c \
 
 OBJ			=	$(SRC:.c=.o)
 
-BONUS_NAME	=	checker_masenjo
+BONUS_NAME	=	checker
 GNL			=	bonus/gnl/libgnl.a
-BONUS_SRC	=	bonus/push_swap_checker_bonus.c \
+BONUS_SRC	=	bonus/push_swap_bonus.c \
+				bonus/push_swap_bonus_utils.c \
 				stack_init.c \
 				stack_basic_ops.c \
 				stack_swap_generic.c \
@@ -100,7 +101,7 @@ bonus: $(BONUS_OBJ) $(LIBFT) $(PRINTF) $(GNL)
 
 clean:
 	@printf "$(YELLOW) Cleaning object in push_swap...$(RESET)\n"
-	@rm -f $(OBJ)
+	@rm -f $(OBJ) $(BONUS_OBJ)
 	@printf "$(YELLOW) Cleaning object in libft...$(RESET)\n"
 	@$(MAKE) -C $(LIBFT_DIR) clean
 	@printf "$(YELLOW) Cleaning object in ft_printf...$(RESET)\n"
