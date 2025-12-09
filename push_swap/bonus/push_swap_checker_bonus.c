@@ -6,7 +6,7 @@
 /*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 11:08:04 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/08 10:10:54 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/09 06:24:31 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,18 @@ static void	efectuate_operations(t_stack *a, t_stack *b, t_list_gnl *ops)
 	}
 }
 
+void ft_print_stack_from_top(t_stack *stack)
+{
+	t_node *curr;
+
+	curr = stack->top;
+	while (curr)
+	{
+		printf("%d.\n", curr->value);
+		curr = curr->next;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack		a;
@@ -122,7 +134,7 @@ int	main(int argc, char **argv)
 	}
 	efectuate_operations(&a, &b, operations);
 	ft_lststr_clear(&operations);
-	if (stack_is_sorted(&a) && b.size)
+	if (stack_is_sorted(&a) && b.size == 0)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
