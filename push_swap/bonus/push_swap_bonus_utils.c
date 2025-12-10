@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_bonus_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenjo <masenjo@student.42Madrid.com>     +#+  +:+       +#+        */
+/*   By: masenjo <masenjo@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 06:48:33 by masenjo           #+#    #+#             */
-/*   Updated: 2025/12/09 06:54:25 by masenjo          ###   ########.fr       */
+/*   Updated: 2025/12/09 15:05:39 by masenjo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	is_valid_op(char *op)
 		return (0);
 }
 
-static int	read_standard_input(t_list_gnl **ops)
+int	read_standard_input(t_list_gnl **ops)
 {
 	char	*line;
 
